@@ -12,7 +12,7 @@
 * Telecomenzi
 * Cabluri
 * Suporturi TV
-### Oferte si promotii:
+#### Oferte si promotii:
 * Lista cu ofertele si promotiile actuale
 * Detalii despre oferte si promotii (conditii, perioada de desfasurare)
 #### Servicii:
