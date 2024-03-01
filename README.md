@@ -42,7 +42,7 @@
 
 2. https://altex.ro/televizoare/cpl/ <br>
 **Pro:** Site-ul pare mai aersit, filtrarile se pot face usor, iar designul este unul simplu <br>
-**Contra:** Spre deosebire de alte site-uri, acesta are mai putine criterii de sortare/filtrare a produselor. De asemenea, dat fiind ca se afla prea multe produse pe o singura pagina, trebuie scrollat destul de mult pentru a ajunge la linkurui importante precum "Informatii legale", "Contact", "Suport clineti" etc.
+**Contra:** Spre deosebire de alte site-uri, acesta are mai putine criterii de sortare/filtrare a produselor. De asemenea, dat fiind ca se afla prea multe produse pe o singura pagina, trebuie scrollat destul de mult pentru a ajunge la link-uri importante precum "Informatii legale", "Contact", "Suport clineti" etc.
 
 3. https://mediagalaxy.ro/televizoare/cpl/ <br>
 Media Galaxy este o retea de magazine din Romania detinuta de Altex. Astfel, site-urile celor doua magazine sunt foarte asemanatoare ca format, avand aceleasi calitati si defecte
