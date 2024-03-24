@@ -1,0 +1,88 @@
+html{
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+    #grid-pagina{
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(3,1fr);   /*1fr 1fr 1fr ;*/
+        grid-template-areas:"welcome welcome welcome" 
+                            "welcome welcome welcome"
+                            "orar orar promotii"
+                            "lista-utilizatori-online date-utilizator-statistici promotii"
+                            "lista-utilizatori-online date-utilizator-statistici promotii"
+                            "anunturi calendar date-site-server"
+                            "index-intrebari index-intrebari index-intrebari";
+    }
+
+#grid-pagina>*{
+    border: 2px solid var(--culoare1);
+    padding: 1em;
+}
+
+#grid-pagina>figure{
+    margin: 0;
+}
+
+#welcome{
+    grid-area: welcome;
+}
+#orar{
+    grid-area: orar;
+    overflow-x: auto;
+}
+#promotii{
+    grid-area: promotii;
+}
+#lista-utilizatori-online{
+    grid-area: lista-utilizatori-online;
+}
+ 
+#date-utilizator-statistici{
+    grid-area: date-utilizator-statistici;
+}
+#anunturi{
+    grid-area: anunturi;
+}
+#calendar{
+    grid-area: calendar;
+}
+#date-site-server{
+    grid-area: date-site-server;
+}
+#index-intrebari{
+    grid-area: index-intrebari;
+}
+
+@media screen and (max-width:1200px){
+
+    html{
+        font-size: 15px;
+    }
+
+    #grid-pagina{
+        grid-template-columns: repeat(2,1fr);   /*1fr 1fr;*/
+        grid-template-areas: 
+                        "welcome welcome"
+                        "orar promotii"
+                        "lista-utilizatori-online date-utilizator-statistici"
+                        "promotii promotii"
+                        "anunturi calendar"
+                        "date-site-server date-site-server"
+                        "index-intrebari index-intrebari" ;
+    }
+}
+
+@media screen and (max-width:800px){
+
+    html{
+        font-size: 12px;
+    }
+
+    #grid-pagina{
+        display: block;
+    }
+}

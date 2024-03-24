@@ -1,0 +1,132 @@
+body {
+  --culoare1: #E87909;
+  --culoare-inchisa: #d92d0a;
+  --culoare-deschisa: #f6be06;
+  --culoare-background: #ebff0a;
+  --culoare-portocaliu-deschis: #eebf03;
+  --culoare-rosu-deschis: #fd9b9b;
+  --culoare-text: black;
+  --culoare-text-selectat: white;
+
+  --spatiere: 100px;
+  padding-left: var(--spatiere);
+  padding-right: var(--spatiere);
+}
+
+/*#link-top {
+  position:fixed;
+    bottom:0.3em;
+    opacity:0.5;
+    left:0.3em;
+    width:3rem;
+    box-sizing: border-box;
+    height:3rem;
+    line-height:3rem;
+    text-align:center;
+    border:5px solid grey;
+      border-top-color:red;
+    border-radius:50%;
+    background: rgb(220,220,220);
+    box-shadow:0px 0px 5px 5px blue inset
+}
+
+
+#link-top:hover {
+  opacity: 1;
+  
+}
+
+#arrow {
+
+};
+
+#link-top:hover>#arrow {
+
+} */
+
+#tab-orar th,
+#tab-orar td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+}
+
+#tab-orar thead th {
+  border-width: 2px;
+}
+
+#tab-orar {
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+#tab-orar tbody tr:nth-child(even) {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: var(--culoare-portocaliu-deschis);
+  transition: background-color 0.75s, font-size 0.75s;
+}
+
+#tab-orar tbody tr:nth-child(odd) {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  color: var(--culoare-rosu-deschis);
+  transition: background-color 0.75s, font-size 0.75s;
+}
+
+#tab-orar tbody tr:hover {
+  background-color: var(--culoare-background);
+  font-size: 120%;
+}
+
+.container {
+  overflow-x: auto;
+}
+
+caption {
+  text-align: center;
+  caption-side: bottom;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    width: 100%;
+    overflow-x: auto;
+  }
+}
+
+.container-iframe {
+  display: flex;
+  width: 55%;
+}
+
+.container-iframe iframe {
+  width: 100%;
+  border-top: 3px solid var(--culoare-inchisa);
+  border-left: 3px solid var(--culoare-inchisa);
+  border-right: 3px solid var(--culoare1);
+  border-bottom: 3px solid var(--culoare1);
+}
+
+.taburi-iframe {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.taburi-iframe>a {
+  display: block;
+  color: var(--culoare-text);
+  border: 4px solid var(--culoare-inchisa);
+  background-color: var(--culoare-background);
+  margin-bottom: 0.2em;
+  border-radius: 10px 0 0 10px;
+  transition: background-color 1.25s;
+  box-shadow: inset 10px 0 0 var(--culoare1);
+}
+
+.taburi-iframe>a:hover {
+  background-color: var(--culoare1);
+  color: var(--culoare-text-selectat);
+  box-shadow: inset 10px 0 0 var(--culoare1);
+}
+
