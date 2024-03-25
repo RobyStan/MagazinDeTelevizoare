@@ -7,15 +7,14 @@ body {
   --culoare-rosu-deschis: #fd9b9b;
   --culoare-text: black;
   --culoare-text-selectat: white;
-
   --spatiere: 100px;
   padding-left: var(--spatiere);
   padding-right: var(--spatiere);
 }
 
-/*#link-top {
-  position:fixed;
-    bottom:0.3em;
+#link-top {
+    position:fixed;
+    bottom:3em;
     opacity:0.5;
     left:0.3em;
     width:3rem;
@@ -23,26 +22,51 @@ body {
     height:3rem;
     line-height:3rem;
     text-align:center;
-    border:5px solid grey;
-      border-top-color:red;
-    border-radius:50%;
-    background: rgb(220,220,220);
-    box-shadow:0px 0px 5px 5px blue inset
+    border:3px dashed var(--culoare1);
+    border-radius: 50%;
+    background: linear-gradient(to bottom, var(--culoare-inchisa), var(--culoare-background), var(--culoare-inchisa));
+    box-shadow:0px 0px 5px 5px inset var(--culoare-portocaliu-deschis);
+    transition: transform 0.45s ease;
 }
-
 
 #link-top:hover {
   opacity: 1;
-  
+  transform: rotate(90deg);
 }
 
 #arrow {
-
-};
+  color: var(--culoare-inchisa);
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.45s ease;
+  
+}
 
 #link-top:hover>#arrow {
+  transform: translate(-50%, -50%) rotate(-90deg) translateY(0);
+}
 
-} */
+#arrow .tooltiptext {
+  border: 2px solid var(--culoare1);
+  font-size: 15px;
+  visibility: hidden;
+  width: 80px;
+  top: 100%;
+  margin-left: -30px;
+  background-color: var(--culoare-background);
+  color: var(--culoare-text);
+  text-align: center;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
+
+#link-top:hover>#arrow .tooltiptext {
+  visibility: visible;
+}
 
 #tab-orar th,
 #tab-orar td {
