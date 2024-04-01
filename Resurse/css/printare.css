@@ -3,7 +3,6 @@
     position: fixed;
     top: 0;
     left: 50%;
-    transform: translateX(-50%);
     width: 80%;
     border: 4px dotted black;
     padding: 10px;
@@ -11,15 +10,19 @@
 }
 
 #watermark {
-    content: "Stan Robert";
-    display: none;
+    display: block;
     position: fixed;
     width: 100px;
     height: 2cm;
+    bottom: 1.5cm;
+    right: 0;
     top: 50%;
     left: 50%;
     border: 4px double black;
     opacity: 0.65;
+    z-index: 9999;
+    line-height: 2cm;
+    text-align: center;
 }
 
 @media print {
@@ -41,7 +44,7 @@
         margin-right: 0.5cm;
     }
     @page :right{
-        margin-left: 0.5cm ;
+        margin-left: 0.5cm;
         margin-right: 2.5cm;
     }
 
