@@ -1,3 +1,7 @@
+body{
+    --inaltime-meniu:3rem;
+}
+
 nav{
     --inaltime-meniu:2.5em;
     --latime-buton:150px;
@@ -5,16 +9,18 @@ nav{
     background-color: var(--culoare-deschisa);
 }
 
-
 #hamburger, #ch-menu{
     display: none;
 }
 
+#hamburger img{
+    height:100%;
+    width:auto;
+}
 
 #acasa-mediu{
     display: none;
 }
-
 .meniu{
     display: flex;
 }
@@ -23,7 +29,6 @@ nav{
     list-style-type: none;
     padding: 0;
     margin: 0;
-    
     background-color: var(--culoare-deschisa);
 }
 
@@ -31,7 +36,6 @@ nav{
     border: 1px solid var(--culoare-inchisa);
     width:var(--latime-buton);
     height: var(--inaltime-meniu);
-    text-align: center;
     box-sizing: border-box;
 }
 
@@ -44,34 +48,67 @@ nav{
     color:var(--culoare-text);
     text-decoration: none;
     box-sizing: border-box;
+    text-align: center;
     transition: all 1s linear;
+}
+
+.meniu li div{
+    text-align: center;
+}
+
+.meniu li a .sageata {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.2s 0.2s, transform 1s;
+}
+
+.meniu li a:hover .sageata {
+    opacity: 1;
+    transform: translate(0);
+}
+
+.meniu li a{
+    text-align: right;
 }
 
 .meniu li:hover>div, .meniu li:hover>a {
     background-color: var(--culoare-inchisa);
     color: var(--culoare-text-selectat);
 }
+
+.meniu li:hover>div{
+    box-shadow: inset 0 0 20px var(--culoare-text-selectat);
+}
+
+.meniu li:hover>a div,
+.meniu li:hover>a {
+    background-color: var(--culoare-inchisa);
+    color: var(--culoare-text-selectat);
+}
+
+.meniu li:hover>a div {
+    box-shadow: inset 0 0 20px var(--culoare-text-selectat);
+}
+
 .meniu li:hover>ul{
     display: block;
     position: absolute;
     z-index:100;
     animation: animatie_submeniu 0.75s linear 1 forwards ;
-    transform-origin: center top;
+    transform-origin: top;
 }
-
 
 /* submeniu */
 .meniu ul{
     display: none;
     opacity: 0;
     transform: scaleY(0);
-
 }
 
 @keyframes animatie_submeniu {
     100% {
-         opacity: 1;
-         transform: scaleY(1);
-
+        opacity: 1;
+        transform: scaleY(1);
     }
 }
