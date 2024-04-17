@@ -153,3 +153,8 @@ caption {
   box-shadow: inset 10px 0 0 var(--culoare1);
 }
 
+a[href^="http"]::before {
+  content: "⮳ "; 
+  font-size: 1.5em; 
+}
+

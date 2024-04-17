@@ -1,0 +1,14 @@
+#container-video {
+  position: relative;
+  width: 50%;
+}
+
+#centrare-video {
+  position: relative;
+  left: 50%;
+}
+
+video {
+  width: 100%; /* Asigură că videoclipul ocupă întreaga lățime a containerului */
+}   
+

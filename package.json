@@ -1,0 +1,19 @@
+{
+  "name": "magazindetelevizoare",
+  "version": "1.0.0",
+  "description": "* Prezentarea magazinului\r * Lista cu oferte sau reduceri \r #### Lista televizoare:\r * Tipuri de televizoare (LED, Smart, Curved, OLED)\r * Informatii despre fiecare categorie    \r * Posibilitatea de a filtra si sorta produsele in functie de anumite criterii (rezolutie, pret, marimea ecranului)\r #### Accesorii:\r * Telecomenzi\r * Cabluri\r * Suporturi TV\r #### Oferte si promotii:\r * Lista cu ofertele si promotiile actuale\r * Detalii despre oferte si promotii (conditii, perioada de desfasurare)\r #### Servicii:\r * Consultanta in alegerea televizorului potrivit\r * Livrare si montare \r #### Contact:\r * Informatii de contact (numar de telefon, adresa de e-mail)\r * Program de functionare al magazinului\r #### Despre noi:\r * Informatii despre echipa \r * Politica de confidențialitate și termeni și condiții\r ### Legaturi intre pagini:\r * In pagina principala se vor afla majoritatea link-urilor care duc catre celelalte pagini (Lista de televizoare, Oferte, Servicii, Contact, etc.)\r * Pagina ce contine lista de televizoare va avea un link catre pagina ce contine detalii despre televizorul ales\r ### Lista de cuvinte cheie:\r #### Pagini principala: televizoare, TeleX, cumparaturi online, transport prin curier, Samsung, Philips\r #### Lista de televizoare: televizoare, LED, Smart TV, pret, rezolutie, diagonala\r #### Accesorii: accesorii TV, telecomenzi, cabluri\r #### Oferte si Promotii: reduceri, oferte speciale, promotii, conditii, valabilitate oferte, perioada promotii\r #### Servicii: consultanta, indrumare, televizor, asistenta tehnica, montare, garantie\r #### Contact: telefon, adresa, e-mail, informatii contact\r #### Despre noi: echipa, istoric, confidentialitate, termeni si conditii\r ### Site-uri similare:\r 1. https://www.emag.ro/search/televizoare/televizoare/c?ref=search_category_1 <br>\r **Pro:** Filtrarea se poate face in functie de multe criterii. Pentru fiecare produs este realizata o scurta descriere ce contine detalii referitoare la: componente, rating, pret. <br>\r **Contra:** Totul este prea inghesuit, iar textul este prea mic",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stan Robert",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "pg": "^8.11.5",
+    "sas": "^3.0.4",
+    "sass": "^1.75.0",
+    "sharp": "^0.33.3"
+  }
+}

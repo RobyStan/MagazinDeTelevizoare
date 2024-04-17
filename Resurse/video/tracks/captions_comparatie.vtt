@@ -1,0 +1,23 @@
+WEBVTT - Made with VTT Creator
+
+STYLE
+::cue {
+    background: linear-gradient(to bottom, #d92d0a, #f6be06); /* Gradient de la culoare închisă la alta culoare închisă */
+    -webkit-background-clip: text; /* Cliparea fundalului la text */
+    background-clip: text; /* Cliparea fundalului la text */
+    color: transparent; /* Textul transparent pentru a lăsa gradientul să fie vizibil */
+    font-size: 18px; /* Mărimea fontului */
+    line-height: 1; /* Înălțimea liniei */
+}
+
+00:00.000 --> 00:03.990 line: 0
+Bine ati venit! 
+In acest clip vom compara diagonalele televizoarelor
+
+00:12.122 --> 00:15.007 position:50% align:middle
+Suntem abia la mijloc si deja diferentele sunt imense!
+
+00:28.110 --> 00:30.110 position:50% align:middle
+Credem ca ai luat deja o decizie in privinta 
+diagonalei televizorului pe care doresti sa-l achizitionezi 
+

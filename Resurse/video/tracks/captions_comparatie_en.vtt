@@ -1,0 +1,22 @@
+WEBVTT - Made with VTT Creator
+
+STYLE
+::cue {
+    background: linear-gradient(to bottom, #d92d0a, #f6be06); /* Gradient de la culoare închisă la alta culoare închisă */
+    -webkit-background-clip: text; /* Cliparea fundalului la text */
+    background-clip: text; /* Cliparea fundalului la text */
+    color: transparent; /* Textul transparent pentru a lăsa gradientul să fie vizibil */
+    font-size: 18px; /* Mărimea fontului */
+    line-height: 1; /* Înălțimea liniei */
+}
+
+00:00.000 --> 00:03.990 position:50% align:middle
+Welcome! In this clip we will compare the diagonals of the televisions
+
+00:12.122 --> 00:15.007 position:50% align:middle
+We are only in the middle of the video and already the differences are huge!
+
+00:28.110 --> 00:30.110 position:50% align:middle
+We believe that you have already made a decision in this regard
+diagonal of the TV you want to buy 
+
