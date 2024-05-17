@@ -15,7 +15,9 @@ html{
                             "lista-utilizatori-online date-utilizator-statistici promotii"
                             "lista-utilizatori-online date-utilizator-statistici promotii"
                             "anunturi calendar date-site-server"
-                            "index-intrebari index-intrebari index-intrebari";
+                            "index-intrebari index-intrebari index-intrebari"
+                            "modele modele modele"
+                            "galerie-statica galerie-statica galerie-statica";
     }
 
 #grid-pagina>*{
@@ -55,6 +57,14 @@ html{
 }
 #index-intrebari{
     grid-area: index-intrebari;
+}
+
+#modele{
+    grid-area: modele;
+}
+
+#galerie-statica{
+    grid-area: galerie-statica;
 }
 
 @media screen and (max-width:1200px){

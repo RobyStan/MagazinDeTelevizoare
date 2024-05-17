@@ -25,9 +25,16 @@
         <main id="grid-pagina">
             <section id="welcome">
                 <h2>Bine ati venit</h2>
+                <div class="container-text-reflexie">
+                    <span id="text">TeleX📺</span>
+                    <span id="text-reflectat">TeleX📺</span>
+                  </div>
                 <p>Ip: <%- locals.ip %></p>
                 <a href="http://www.google.com" target="_blank">Google</a>
                 <!--Deschide o fila noua, nu in aceeasi pagina-->
+                <div class="text-scrolling-container">
+                    <p class="text-scrolling">Te asteptam cu drag la noi sa descoperi cele mai noi modele de televizoare!</p>
+                  </div>
                 <figure>
                     <picture>
                         <source
@@ -92,6 +99,9 @@
                         la 50% la televizoarele Samsung! Nu ratati sansa de a revedea filmul preferat la calitate
                         maxima! </p>
                 </section>
+                <div class="container-duotone">
+                    <div id="imagine-duotone"></div>
+                  </div>
             </section>
             <section id="lista-utilizatori-online">
                 <h2>Lista utilizatori online</h2>
@@ -275,6 +285,35 @@
                         allowfullscreen></iframe>
                 </div>
             </section>
+            <section id="galerie-statica">
+                <h2>Galerie</h2>
+                <div id="grid-galerie">
+                    <% var vZile=["luni", "marti", "miercuri", "joi", "vineri", "sambata", "duminica"]; %>
+                    <% var d=new Date(); %>
+                    <% var ziuaCurenta=vZile[d.getDay()]; %>
+                    <% for(let imag of locals.imagini) { %>
+                        <% if (imag?.intervale_zile?.some(interval => interval.includes(ziuaCurenta))) { %>
+                            <div class="imag">
+                                <figure>
+                                    <picture>
+                                        <source srcset="<%= imag.fisier_mediu %>" media="(max-width:1200px)"/>
+                                        <img src="<%= imag.fisier %>" alt="<%= imag.continut_alternativ || imag.nume_poza %>"/>
+                                    </picture>
+                                    <figcaption>
+                                        <p><%= imag.nume_poza%></p>
+                                        <p><%= imag.descriere_poza %></p>
+                                        <p><%= imag.continut_alternativ %></p>
+                                        <p><%= imag.autor%></p>
+                                        <p><%= imag.sursa%></p>
+                                        <p><%= imag.licenta%></p>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        <% } %>
+                    <% } %>
+                </div>
+            </section>
+            
         </main>
         <%- include("../fragmente/footer.ejs") %>
        

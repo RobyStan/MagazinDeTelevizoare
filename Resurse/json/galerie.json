@@ -1,0 +1,151 @@
+{
+	"cale_galerie":"resurse/imagini/galerie",
+	"imagini": [
+        {
+            "fisier": "clearview-hdtv-20351280340940ssqn.jpg",
+            "nume_poza": "ClearView HDTV",
+            "continut_alternativ": "Televiziune ClearView HD de ultima generatie,cu  o rezolutie impecabila",
+            "descriere_poza": "Televiziune Clearview HD",
+            "intervale_zile": [
+                ["luni", "miercuri"],
+                ["sambata", "sambata"]
+            ]
+        },
+        {
+            "fisier": "hdmi.jpg",
+            "nume_poza": "Cablu  HDMI",
+            "continut_alternativ": "Cablu HDMI pentru o calitate superioara a imaginii",
+            "descriere_poza": "Cablu HDMI pentru o calitate superioara a imaginii",
+            "intervale_zile": [
+                ["marti", "joi"],
+                ["duminica", "duminica"]
+            ]
+        },
+        {
+            "fisier": "long-distance-driver-on-tv.jpg",
+            "nume_poza": "Telecomanda",
+            "continut_alternativ": "Telecomanda universala pentru controlul tuturor televizoarelor din casa dumneavoastra",
+            "descriere_poza": "Telecomanda universala",
+            "intervale_zile": [
+                ["miercuri", "vineri"],
+                ["luni", "luni"]
+            ]
+        },
+        {
+            "fisier": "long-distance-driver-on-tv-1326198005Ket.jpg",
+            "nume_poza": "Telecomanda",
+            "continut_alternativ": "Telecomanda universala pentru controlul tuturor televizoarelor din casa dumneavoastra",
+            "descriere_poza": "Telecomanda universala",
+            "intervale_zile": [
+                ["joi", "sambata"],
+                ["marti", "marti"]
+            ]
+        },
+        {
+            "fisier": "man-watching-tv-16885720086g5.jpg",
+            "nume_poza": "Pauza TV",
+            "continut_alternativ": "Un barbat  care se uita la TV",
+            "descriere_poza": "Un barbat care se relaxeaza pe canapea si se uita la TV",
+            "intervale_zile": [
+                ["vineri", "duminica"],
+                ["miercuri", "miercuri"]
+            ]
+        },
+        {
+            "fisier": "playing-on-a-console-1700131219C5K.jpg",
+            "nume_poza": "Sesiune de jocuri",
+            "continut_alternativ": "Un tanar ce foloseste unul dintre televizoarele noastre pentru a se distra",
+            "descriere_poza": "Un tanar care se joaca pe consola de jocuri ",
+            "intervale_zile": [
+                ["sambata", "luni"],
+                ["joi", "joi"]
+            ]
+        },
+        {
+            "fisier": "playing-on-a-console-17001312173LP.jpg",
+            "nume_poza": "Seara de jocuri",
+            "continut_alternativ": "Un tanar ce foloseste unul dintre televizoarele noastre pentru a se mai relaxa",
+            "descriere_poza": "Jocuri pe consola",
+            "intervale_zile": [
+                ["duminica", "marti"],
+                ["vineri", "vineri"]
+            ]
+        },
+        {
+            "fisier": "power-button-on-tv-remote.jpg",
+            "nume_poza": "Telecomanda TV",
+            "continut_alternativ": "Momente de relaxare in fata televizorului",
+            "descriere_poza": "Buton de opriere pornire pe telecomanda TV",
+            "intervale_zile": [
+                ["luni", "miercuri"],
+                ["sambata", "sambata"]
+            ]
+        },
+        {
+            "fisier": "recycling-old-tv.jpg",
+            "nume_poza": "Depozit televizoare vechi",
+            "continut_alternativ": "Loc de depozitare a televizoarelor vechi si a altor echipamente electronice",
+            "descriere_poza": "Reciclare televizoare vechi",
+            "intervale_zile": [
+                ["marti", "joi"],
+                ["duminica", "duminica"]
+            ]
+        },
+        {
+            "fisier": "suport.jpg",
+            "nume_poza": "Suport TV",
+            "continut_alternativ": "Suport TV pentru a fixa televizorul pe perete sau pe mobilier",
+            "descriere_poza": "Imagine de prezentare a unui suport TV",
+            "intervale_zile": [
+                ["miercuri", "vineri"],
+                ["luni", "luni"]
+            ]
+        },
+        {
+            "fisier": "television-remote-control.jpg",
+            "nume_poza": "Telecomanda TV",
+            "continut_alternativ": "Telecomanda TV pentru controlul televizorului",
+            "descriere_poza": "Telecomanda pentru TV",
+            "intervale_zile": [
+                ["joi", "sambata"],
+                ["marti", "marti"]
+            ]
+        },
+        {
+            "fisier": "watching-tv.jpg",
+            "nume_poza": "Relaxare la TV",
+            "continut_alternativ": "Seara de relaxare in fata televizorului",
+            "descriere_poza": "Placerea de a te uita la TV",
+            "intervale_zile": [
+                ["vineri", "duminica"],
+                ["miercuri", "miercuri"]
+            ]
+        },
+        {
+            "fisier": "9384135322_743688c39b_o.jpg",
+            "nume_poza": "Seara de film",
+            "continut_alternativ": "Seara de film in familie",
+            "descriere_poza": "Momente de liniste in fata televizorului",
+            "autor":"Sinchen.Lin",
+            "sursa":"www.flickr.com/photos",
+            "licenta":"CC BY 2.0",
+            "intervale_zile": [
+                ["sambata", "luni"],
+                ["joi", "joi"]
+            ]
+        },
+        {
+            "fisier": "cc-by1.jpg",
+            "nume_poza": "Expozitie de televizoare",
+            "continut_alternativ": "Expozitie de televizoare, modele vechi si noi",
+            "descriere_poza": "Oferte de televizoare la preturi avantajoase",
+            "autor":"Mike Mozart",
+            "sursa":"www.flickr.com/photos",
+            "licenta":"CC BY 2.0",
+            "intervale_zile": [
+                ["duminica", "marti"],
+                ["vineri", "vineri"]
+            ]
+        }
+    ]
+}

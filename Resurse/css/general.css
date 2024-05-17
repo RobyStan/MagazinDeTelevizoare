@@ -158,3 +158,104 @@ a[href^="http"]::before {
   font-size: 1.5em; 
 }
 
+/* Reflexie text */
+
+#text{
+  transform: skew( 5deg ,-30deg);
+}
+
+#text, #text-reflectat {
+  color:var(--culoare1);
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+  display: inline-block;
+  transition: color 1s ease; 
+}
+
+#text-reflectat {
+  transform: scaleX(-1) skew(5deg ,-30deg);
+  margin-left: 15px;
+}
+
+.container-text-reflexie:hover #text, .container-text-reflexie:hover #text-reflectat {
+  color: var(--culoare-inchisa); 
+}
+
+.container-text-reflexie {
+  margin-bottom: 30px;
+  margin-top: 40px;
+}
+
+/* Reflexie text */
+
+/* Imagine Duotone*/
+
+.container-duotone {
+  width: 500px;
+  height: 395px;
+  overflow: hidden; /* Ascunde ceea ce depășește limitele containerului */
+}
+
+#imagine-duotone{
+	position:relative;
+	background-image:url("/resurse/imagini/rsz_1reducere.png");
+	background-size:cover;
+	width:500px; 
+	height:395px;
+}
+
+#imagine-duotone::before,
+#imagine-duotone::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#imagine-duotone::before {
+  background-color: red; /* Culoarea 1 pentru duotone */
+  mix-blend-mode: lighten; /* Aplică modul de amestec pentru efectul duotone */
+  z-index: 1; /* Asigură că este deasupra imaginii */
+  transition: all 1.5s linear; /* Adaugă o tranziție lină */
+  transform: translateX(-100%);
+}
+
+#imagine-duotone::after {
+  background-color: blue; /* Culoarea 2 pentru duotone */
+  mix-blend-mode: lighten; /* Aplică modul de amestec pentru efectul duotone */
+  z-index: 1; /* Asigură că este deasupra imaginii */
+  transition: all 1.5s linear; /* Adaugă o tranziție lină */
+  transform: translateX(100%);
+}
+
+#imagine-duotone:hover::before,
+#imagine-duotone:hover::after {
+  transform: translateX(0); /* Adaugă o tranziție la poziția inițială la hover */
+}
+
+/* Imagine Duotone*/
+
+/* Text scrolling */
+
+.text-scrolling-container {
+  overflow: hidden; /* Ascunde textul care iese din container */
+}
+
+.text-scrolling {
+  white-space: nowrap; /* Textul nu va fi împărțit pe linii */
+  animation: scroll-right 10s linear infinite; /* Folosește animația pentru mișcare la dreapta */
+  /* Pentru mișcare verticală: animation: scroll-up 10s linear infinite; */
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(100%); /* Textul va fi complet la dreapta la început */
+  }
+  100% {
+    transform: translateX(-100%); /* Textul va fi complet la stânga la sfârșit */
+  }
+}
+
+/* Text scrolling */
