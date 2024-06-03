@@ -4,7 +4,19 @@ const fs= require('fs');
 const path=require('path');
 const sharp=require('sharp'); 
 const sass=require('sass');
-// const ejs=require('ejs');
+const ejs=require('ejs');
+const Client = require('pg').Client;
+
+var client = new Client({database:"cti_2024",
+        user: "roby",
+        password: "roby",
+        host: "localhost",
+        port: 5432});
+client.connect();   
+
+client.query("SELECT * FROM televizoare ", function(err, rez){
+    console.log(rez);
+})
 
 obGlobal ={
     obErori:null,
@@ -67,8 +79,50 @@ app.get("/suma/:a/:b", function(req, res){
 
 app.get("/favicon.ico", function(req, res){
     res.sendFile(path.join(__dirname,"resurse/imagini/ico/favicon.ico"));
-    
 });
+
+//--------------------------Produse--------------------------
+app.get("/produse", function(req, res){
+    console.log(req.query)
+    var conditieQuery="";
+    if (req.query.tip){
+        conditieQuery=` where tip_produs='${req.query.tip}'`
+    }
+    client.query("select * from unnest(enum_range(null::branduri))", function(err, rezOptiuni){
+
+        client.query(`select * from televizoare ${conditieQuery}`, function(err, rez){
+            if (err){
+                console.log(err);
+                afisareEroare(res, 2);
+            }
+            else{
+                res.render("pagini/produse", {produse: rez.rows, optiuni:rezOptiuni.rows})
+            }
+        })
+    });
+})
+
+app.get("/produs/:id", function(req, res){
+    client.query(`select * from televizoare where id=${req.params.id}`, function(err, rez){
+        if (err){
+            console.log(err);
+            afisareEroare(res, 2);
+        }
+        else{
+            res.render("pagini/produs", {prod: rez.rows[0]})
+        }
+    })
+})
+
+
+
+
+
+
+
+
+
+
  
 app.get("/*.ejs", function(req, res){
     afisareEroare(res,400);

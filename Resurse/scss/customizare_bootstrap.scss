@@ -1,0 +1,106 @@
+@use '../../node_modules/bootstrap/scss/bootstrap.scss' as *;
+
+// Tema cromatică personalizată
+$primary: #E87909; // Exemplu de culoare personalizată pentru tema primară
+
+// Culori de font
+$body-color: #f6be06; // Culoare de font pentru textul corpului
+
+// Dimensiuni de ecran diferite
+$screen-md: 768px; // Dimensiunea ecranului mediu
+$screen-lg: 992px; // Dimensiunea ecranului mare
+
+// Dimensiunea razelor de border
+$border-radius: 6px; // Dimensiunea razei borderului
+
+// Dimensiunea literelor pentru heading-uri
+$h1-font-size: 2.5rem; // Dimensiunea fontului pentru h1
+$h2-font-size: 2rem; // Dimensiunea fontului pentru h2
+$h3-font-size: 1.75rem; // Dimensiunea fontului pentru h3
+
+// Familie de font implicită
+$body-font-family: 'Arial', sans-serif; // Familia de font implicită pentru textul corpului
+
+// Alte variabile personalizate
+$custom-variable: value; // Exemplu de variabilă personalizată
+
+// Suprascriem unele stiluri Bootstrap pentru a se potrivi cu tema noastră personalizată
+body {
+  background-color: #ebff0a; // Culoarea de fundal pentru corpul paginii
+}
+
+// Stilizarea butoanelor
+.btn-custom {
+  @extend .btn; // Folosim stilurile de bază ale butonului din Bootstrap
+  background-color: $primary; // Folosim culoarea personalizată pentru fundal
+  color: #fff; // Culoarea textului
+  border-radius: $border-radius; // Folosim dimensiunea personalizată a razei borderului
+  border: 2px solid $primary; // Grosimea borderului
+  font-size: 1rem; // Dimensiunea fontului
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .btn-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 0.5rem; // Spațiere între icon și text pe ecran mediu și mare
+  }
+  
+  .btn-text {
+    display: inline; // Afișăm textul pe ecran mediu și mare
+  }
+  
+  @media (max-width: $screen-md) {
+    .btn-text {
+      display: none; // Ascundem textul pe ecran mic
+    }
+  }
+}
+
+// Exemple de butoane cu iconuri
+.btn-filter {
+  @extend .btn-custom;
+  .btn-icon {
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16"%3E%3Cpath d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/%3E%3C/svg%3E') no-repeat center;
+  }
+}
+
+.btn-sort-cresc {
+  @extend .btn-custom;
+  .btn-icon {
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down-alt" viewBox="0 0 16 16"%3E%3Cpath d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5"/%3E%3C/svg%3E') no-repeat center;
+  }
+}
+
+.btn-sort-desc {
+  @extend .btn-custom;
+  .btn-icon {
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down" viewBox="0 0 16 16"%3E%3Cpath d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/%3E%3C/svg%3E') no-repeat center;
+  }
+}
+
+.btn-reset {
+  @extend .btn-custom;
+  .btn-icon {
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16"%3E%3Cpath fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/%3E%3Cpath d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/%3E%3C/svg%3E') no-repeat center;
+  }
+}
+
+.btn-calculate {
+  @extend .btn-custom;
+  .btn-icon {
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calculator-fill" viewBox="0 0 16 16"%3E%3Cpath d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm2 .5v2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5m0 4v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M4.5 9a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 12.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M7.5 6a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM7 9.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m.5 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM10 6.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m.5 2.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5z"/%3E%3C/svg%3E') no-repeat center;
+  }
+}
+
+// Stilizare specifică pentru ecranul mediu
+@media (min-width: $screen-md) {
+  // Stilizare specifică pentru ecranul mediu
+}
+
+// Stilizare specifică pentru ecranul mare
+@media (min-width: $screen-lg) {
+  // Stilizare specifică pentru ecranul mare
+}

@@ -10,6 +10,28 @@ body {
   --spatiere: 100px;
   padding-left: var(--spatiere);
   padding-right: var(--spatiere);
+  background-image: url('../imagini/light.jpg'); /* Înlocuiți 'calea-catrea-imagine.jpg' cu calea către imaginea de fundal dorită */
+  background-size: cover; /* Asigură că imaginea acoperă întreaga suprafață a ecranului */
+  background-position: center; /* Centrează imaginea pe ecran */
+  background-repeat: no-repeat
+}
+
+body.dark {
+  --culoare1: #a15329;
+  --culoare-inchisa: #ab4e26;
+  --culoare-deschisa: #4a2812;
+  --culoare-background: #514f4f;
+  --culoare-portocaliu-deschis: #7d5f17;
+  --culoare-rosu-deschis: #8b3f3f;
+  --culoare-text: white;
+  --culoare-text-selectat: black;
+  --spatiere: 100px;
+  background-image: url('../imagini/dark.jpg'); /* Înlocuiți 'calea-catrea-imagine.jpg' cu calea către imaginea de fundal dorită */
+  background-size: cover; /* Asigură că imaginea acoperă întreaga suprafață a ecranului */
+  background-position: center; /* Centrează imaginea pe ecran */
+  background-repeat: no-repeat;
+  padding-left: var(--spatiere);
+  padding-right: var(--spatiere);
 }
 
 #link-top {

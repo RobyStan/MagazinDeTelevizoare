@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta name="description" content="Magazin TeleX. Modele televizoare. Produse resigilate verificate. Returnarea produselor. Garantie 2 ani. Montarea gratis.">
+    <meta name="keywords" content="televizor, Samsung, Philips, Bucuresti, lungime diagonala, transport prin curier, TeleX">
+    <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
+    <title>Magazin de televizoare TeleX</title>
+    <%- include("../fragmente/head") %>
+    <script type="text/javascript" src="/resurse/js/produse.js"></script>
+</head>
+<body>
+<%- include("../fragmente/header") %>
+
+<main class="container">
+    <div class="row mb-3">
+        <div class="col-md-6 mb-3">
+            <label for="inp-nume">Nume:</label>
+            <input type="text" class="form-control" id="inp-nume">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="inp-pret">Pret minim:</label>
+            <input type="range" class="form-range" id="inp-pret" value="0" min="0" max="5000">
+            <span id="infoRange">(0)</span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6 mb-3">
+            <label for="inp-categorie">Categorie:</label>
+            <select id="inp-categorie" class="form-select">
+                <option value="toate" selected>Toate</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Sony">Sony</option>
+                <option value="LG">LG</option>
+                <option value="Philips">Philips</option>
+            </select>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="inp-diagonala-min">Diagonala minima:</label>
+            <input type="number" class="form-control" id="inp-diagonala-min" value="0" min="0">
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="inp-diagonala-max">Diagonala maxima:</label>
+            <input type="number" class="form-control" id="inp-diagonala-max" value="100" max="100">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6 mb-3">
+            <label for="inp-garantie">Garantie:</label>
+            <input type="checkbox" class="btn-check" id="inp-garantie" autocomplete="off">
+            <label class="btn btn-outline-primary" for="inp-garantie">Garantie</label>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Calitate:</label>
+            <input type="checkbox" class="btn-check" name="calitate" id="calitate-hd" value="HD" autocomplete="off">
+            <label class="btn btn-outline-primary" for="calitate-hd">HD</label>
+            <input type="checkbox" class="btn-check" name="calitate" id="calitate-4k" value="4K" autocomplete="off">
+            <label class="btn btn-outline-primary" for="calitate-4k">4K</label>
+            <input type="checkbox" class="btn-check" name="calitate" id="calitate-8k" value="8K" autocomplete="off">
+            <label class="btn btn-outline-primary" for="calitate-8k">8K</label>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4 mb-3">
+            <button class="btn-filter btn btn-outline-primary w-100" id="filtrare"><span class="btn-icon"></span><span class="btn-text">Filtreaza</span></button>
+        </div>
+        <div class="col-md-4 mb-3">
+            <button class="btn-reset btn btn-outline-primary w-100" id="resetare"><span class="btn-icon"></span><span class="btn-text">Reseteaza</span></button>
+        </div>
+        <div class="col-md-4 mb-3">
+            <button class="btn-sort-cresc btn btn-outline-primary w-100" id="sortCrescNume"><span class="btn-icon"></span><span class="btn-text">Sorteaza crescator dupa pret si nume</span></button>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6 mb-3">
+            <button class="btn-sort-desc btn btn-outline-primary w-100" id="sortDescrescNume"><span class="btn-icon"></span><span class="btn-text">Sorteaza descrescator dupa pret si nume</span></button>
+        </div>
+        <div class="col-md-6 mb-3">
+            <button class="btn-calculate btn btn-outline-primary w-100" id="calculeaza"><span class="btn-icon"></span><span class="btn-text">Calculează Suma/Media/Min/Max Prețurilor</span></button>
+        </div>
+    </div>
+    <section id="produse">
+        <h2>Produse</h2>
+        <div class="row grid-produse">
+            <% for (let prod of produse) { %>
+                <div class="col-md-4 mb-3">
+                    <article class="produs <%- prod.categorie.replace(' ', '_') %>" id="artc-<%- prod.id %>">
+                        <h3 class="nume"><a href="/produs/<%- prod.id %>"><%- prod.nume %></a></h3>
+                        <div class="imag-produs">
+                            <figure>
+                                <img src="/resurse/imagini/produse/<%- prod.imagine %>" alt="Imagine <%- prod.nume %>">
+                            </figure>
+                        </div>
+                        <div class="info-produse">
+                            <p>Pret: <span><%- prod.pret %> lei</span></p>
+                            <p>Diagonala: <span><%- prod.diagonala %> inch</span></p>
+                            <p>Calitate: <span><%- prod.calitate.join(', ') %></span></p>
+                            <p>Data fabricatie: <time datetime="<%- prod.data_fabricatie %>"><%- new Date(prod.data_fabricatie).toLocaleDateString('ro-RO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></time></p>
+                            <p>Garantie: <span><%- prod.garantie ? "Da" : "Nu" %></span></p>
+                        </div>
+                        <p class="categorie">Categorie: <span><%- prod.categorie %></span></p>
+                        <p class="descriere"><%- prod.descriere %></p>
+                    </article>
+                </div>
+            <% } %>
+        </div>
+    </section>
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
+                <label for="floatingTextarea">Comentariu</label>
+                <div class="invalid-feedback">
+                    Vă rugăm să introduceți un comentariu valid.
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include("../fragmente/footer") %>
+</body>
+</html>
