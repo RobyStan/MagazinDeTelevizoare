@@ -1,5 +1,4 @@
 <%
-// Calculăm valorile minime și maxime pentru diferite inputuri
 let minPret = Math.min(...produse.map(p => p.pret));
 let maxPret = Math.max(...produse.map(p => p.pret));
 let minDiagonala = Math.min(...produse.map(p => p.diagonala));
@@ -89,6 +88,7 @@ let maxDiagonala = Math.max(...produse.map(p => p.diagonala));
     </div>
     <section id="produse">
         <h2>Produse</h2>
+        <p id="numar-produse">Număr total de produse afișate: <%= produse.length %></p>
         <div class="row grid-produse">
             <% for (let prod of produse) { %>
                 <div class="col-md-4 mb-3">

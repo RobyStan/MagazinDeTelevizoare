@@ -76,6 +76,17 @@ main {
     position: relative;
 }
 
+.eticheta-cel-mai-ieftin {
+    background-color: #ff0;
+    color: #f00;
+    font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    position: absolute;
+    top: 65px;
+    right: 10px;
+}
+
 .selecteaza-cos {
     display: inline-block;
     background-color: var(--culoare-mov);
@@ -93,36 +104,36 @@ main {
     border: 1px solid var(--culoare-mov);
 }
 
-/* Media queries for responsiveness */
+
 @media (max-width: 1024px) {
     .grid-produse .produs {
-        flex: 1 1 calc(50% - 0); /* Adjust width for smaller screens */
+        flex: 1 1 calc(50% - 0); 
     }
 
     .grid-produse .produs figure img {
-        max-width: 150px; /* Max width set to 150px for smaller screens */
-        max-height: 100px; /* Max height set to 100px for smaller screens */
+        max-width: 150px; 
+        max-height: 100px; 
     }
 }
 
 @media (max-width: 768px) {
     .grid-produse .produs {
-        flex: 1 1 calc(100% - 0); /* Adjust width for smaller screens */
+        flex: 1 1 calc(100% - 0); 
     }
 
     .grid-produse .produs figure img {
-        max-width: 120px; /* Max width set to 120px for smaller screens */
-        max-height: 90px; /* Max height set to 90px for smaller screens */
+        max-width: 120px; 
+        max-height: 90px; 
     }
 }
 
 @media (max-width: 480px) {
     .grid-produse .produs {
-        flex: 1 1 calc(100% - 0); /* Single column layout for very small screens */
+        flex: 1 1 calc(100% - 0); 
     }
 
     .grid-produse .produs figure img {
-        max-width: 100px; /* Max width set to 100px for very small screens */
-        max-height: 75px; /* Max height set to 75px for very small screens */
+        max-width: 100px; 
+        max-height: 75px; 
     }
 }
