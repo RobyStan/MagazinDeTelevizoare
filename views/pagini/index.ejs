@@ -8,23 +8,21 @@
 
     <%- include("../fragmente/head.ejs") %>
     <meta name="description" content="Magazin TeleX. Modele televizoare.Produse resigilate verificate. Returnarea produselor. Garantie 2 ani. Montarea gratis.">
-    <!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
     <meta name="keywords"
         content="televizor, Samsung, Philips, Bucuresti, lungime diagonala, transport prin curier, TeleX">
-    <!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
     <title>Magazin de televizoare TeleX </title>
 </head>
 
 <body>
-    <%- include("../fragmente/header.ejs") %>
+    <%- include("../fragmente/header.ejs") %>       
     <main>
-        <div id="banner">Acesta este un proiect scolar! </div>
         <div id="watermark">
             <p>Stan Robert</p>
         </div>
         <main id="grid-pagina">
             <section id="welcome">
                 <h2>Bine ati venit</h2>
+                <%- include("../fragmente/formular-login.ejs") %>
                 <div class="container-text-reflexie">
                     <span id="text">TeleX📺</span>
                     <span id="text-reflectat">TeleX📺</span>
@@ -34,7 +32,8 @@
                 <!--Deschide o fila noua, nu in aceeasi pagina-->
                 <div class="text-scrolling-container">
                     <p class="text-scrolling">Te asteptam cu drag la noi sa descoperi cele mai noi modele de televizoare!</p>
-                  </div>
+                </div>
+                <div id="lastPageInfo"></div>
                 <figure>
                     <picture>
                         <source

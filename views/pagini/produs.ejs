@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<!-- Comentariu
--->
+<!-- Comentariu -->
 
 <html lang="ro">
 
@@ -10,10 +9,10 @@
     <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
     <meta name="description" content="Magazin TeleX. Modele televizoare.Produse resigilate verificate. Returnarea produselor. Garantie 2 ani. Montarea gratis.">
     <!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
-    <meta name="keywords"
-        content="televizor, Samsung, Philips, Bucuresti, lungime diagonala, transport prin curier, TeleX">
+    <meta name="keywords" content="televizor, Samsung, Philips, Bucuresti, lungime diagonala, transport prin curier, TeleX">
     <!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
     <title>Magazin de televizoare TeleX </title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -22,25 +21,53 @@
     <main>
         <section>
             <h2>Pagină produs</h2>
-                <article id="art-produs">
-                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
-                    <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
-                    <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
-                    <p>Locatie disponibila: <span class="locatie_disponibila"><%- locals.prod.locatie_disponibila %> </span></p>
-                    <p>Tip produs: <span class="tip_produs"><%- locals.prod.tip_produs %> </span></p>
-                    <p>Diagonala: <span class="diagonala"><%- locals.prod.diagonala %> </span></p>
-                    <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
-                    <p>Calitate: <span class="calitate"><%- locals.prod.calitate %> </span></p>
-                    <p>Garantie: <span class="garantie"><%- locals.prod.garantie %> </span></p>
-                    <p>Data adăugare: <span class="categorie"><%- locals.prod.data_adaugare %> </span></p>
-                    <figure class="imag-produs">
-                        <img  src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
-                    </figure>    
-                </article>
-            
+            <article id="art-produs">
+                <h3><span class="nume"><%- locals.prod.nume %></span></h3>
+                <div class="accordion" id="productAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingDescription">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription">
+                                Descriere
+                            </button>
+                        </h2>
+                        <div id="collapseDescription" class="accordion-collapse collapse" aria-labelledby="headingDescription" data-bs-parent="#productAccordion">
+                            <div class="accordion-body">
+                                <p><%- locals.prod.descriere %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingDetails">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetails" aria-expanded="false" aria-controls="collapseDetails">
+                                Detalii
+                            </button>
+                        </h2>
+                        <div id="collapseDetails" class="accordion-collapse collapse" aria-labelledby="headingDetails">
+                            <div class="accordion-body">
+                                <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
+                                <p>Locatie disponibila: <span class="locatie_disponibila"><%- locals.prod.locatie_disponibila %> </span></p>
+                                <p>Tip produs: <span class="tip_produs"><%- locals.prod.tip_produs %> </span></p>
+                                <p>Diagonala: <span class="diagonala"><%- locals.prod.diagonala %> </span></p>
+                                <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
+                                <p>Calitate: <span class="calitate"><%- locals.prod.calitate %> </span></p>
+                                <p>Garantie: <span class="garantie"><%- locals.prod.garantie %> </span></p>
+                                <p>Data adăugare: <span class="categorie"><%- locals.prod.data_adaugare %> </span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <figure class="imag-produs">
+                    <img src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
+                </figure>
+            </article>
         </section>
     </main>
 
     <%- include("../fragmente/footer") %>
-    </body>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="/resurse/js/produs.js"></script>
+</body>
+
 </html>

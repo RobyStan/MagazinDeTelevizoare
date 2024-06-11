@@ -1,0 +1,59 @@
+#banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 25vw; /* Un sfert din lățimea ecranului */
+    height: 25vw; /* Latura pătrată */
+    color: var(--culoare-text);
+    opacity: 0;
+    transform-origin: bottom left; /* Setați punctul de origine al transformării */
+    transform: scale(0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: calc(1vw + 1vh + 1vmin); /* Dimensiune relativă a textului */
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: showBanner 5s forwards;
+}
+
+@keyframes showBanner {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+        background-color: var(--culoare-background);
+    }
+    50% {
+        background-color: var(--culoare-background); /* Culoare intermediară */
+    }
+    100% {
+        opacity: 0.75;
+        transform: scale(1);
+        background-color: var(--culoare-background); /* Poți schimba această culoare conform schemei tale cromatice */
+    }
+}
+
+/* Media queries pentru ecrane medii și mici */
+@media (max-width: 1200px) {
+    #banner {
+        width: 25vw; /* Ajustați dimensiunea pentru ecrane medii */
+        height: 20vw;
+        opacity: 0.75;
+        transform: scale(1);
+        background-color: var(--culoare-background); /* Asigură-te că are aceeași culoare */
+        animation: none; /* Dezactivează animația */
+    }
+}
+
+@media (max-width: 700px) {
+    #banner {
+        width: 25vw; /* Ajustați dimensiunea pentru ecrane mici */
+        height: 25vw;
+        opacity: 0.75;
+        transform: scale(1);
+        background-color: var(--culoare-background); /* Asigură-te că are aceeași culoare */
+        animation: none; /* Dezactivează animația */
+    }
+}

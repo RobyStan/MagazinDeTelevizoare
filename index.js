@@ -10,6 +10,7 @@ const AccesBD= require("./module_proprii/accesbd.js");
 const formidable=require("formidable");
 const {Utilizator}=require("./module_proprii/utilizator.js")
 const session=require('express-session');
+const Drepturi = require("./module_proprii/drepturi.js");
 const Client = require('pg').Client;
 
 var client = new Client({database:"cti_2024",
@@ -31,6 +32,16 @@ obGlobal ={
     folderBackup:path.join(__dirname,"backup"),
 }
 
+client.query("select * from unnest(enum_range(null::produse))", function(err, rezCategorie){
+    if (err){
+        console.log(err);
+    }
+    else{
+        obGlobal.optiuniMeniu=rezCategorie.rows;
+    }
+});
+
+
 vect_foldere=["temp", "temp1", "backup", "poze_uploadate"]
 for (let folder of vect_foldere){
     let caleFolder=path.join(__dirname, folder)
@@ -49,6 +60,15 @@ app.use(session({ // aici se creeaza proprietatea session a requestului (pot fol
     resave: true,
     saveUninitialized: false
   }));
+
+app.use("/*",function(req, res, next){
+    res.locals.optiuniMeniu=obGlobal.optiuniMeniu;
+    res.locals.Drepturi=Drepturi;
+    if (req.session.utilizator){
+        req.utilizator=res.locals.utilizator=new Utilizator(req.session.utilizator);
+    }    
+    next();
+})  
 
 app.set("view engine","ejs");
  
@@ -212,6 +232,85 @@ app.post("/inregistrare",function(req, res){
         console.log(nume,fisier);
     });
 });
+
+app.post("/login",function(req, res){
+    /*TO DO
+        testam daca a confirmat mailul
+    */
+    var username;
+    console.log("ceva");
+    var formular= new formidable.IncomingForm()
+    
+
+    formular.parse(req, function(err, campuriText, campuriFisier ){
+        var parametriCallback= {
+            req:req,
+            res:res,
+            parola: campuriText.parola[0]
+        }
+        Utilizator.getUtilizDupaUsername (campuriText.username[0],parametriCallback, 
+            function(u, obparam, eroare ){ //proceseazaUtiliz
+            let parolaCriptata=Utilizator.criptareParola(obparam.parola)
+            if(u.parola== parolaCriptata && u.confirmat_mail){
+                u.poza=u.poza?path.join("poze_uploadate",u.username, u.poza):"";
+                obparam.req.session.utilizator=u;               
+                obparam.req.session.mesajLogin="Bravo! Te-ai logat!";
+                obparam.res.redirect("/index");
+                
+            }
+            else{
+                console.log("Eroare logare")
+                obparam.req.session.mesajLogin="Date logare incorecte sau nu a fost confirmat mailul!";
+                obparam.res.redirect("/index");
+            }
+        })
+    });
+    
+});
+
+app.get("/logout", function(req, res){
+    req.session.destroy();
+    res.locals.utilizator=null;
+    res.render("pagini/logout");
+});
+
+//http://${Utilizator.numeDomeniu}/cod/${utiliz.username}/${token}
+app.get("/cod/:username/:token",function(req,res){
+    /*TO DO parametriCallback: cu proprietatile: request (req) si token (luat din parametrii cererii)
+        setat parametriCerere pentru a verifica daca tokenul corespunde userului
+    */
+    console.log(req.params);
+
+    try {
+        var parametriCallback={
+            req:req,
+            token:req.params.token
+        }
+        Utilizator.getUtilizDupaUsername(req.params.username,parametriCallback ,function(u,obparam){
+            let parametriCerere={
+                tabel:"utilizatori",
+                campuri:{confirmat_mail:true},
+                conditiiAnd:[`id=${u.id}`]
+            };
+            AccesBD.getInstanta().update(
+                parametriCerere, 
+                function (err, rezUpdate){
+                    if(err || rezUpdate.rowCount==0){
+                        console.log("Cod:", err);
+                        afisareEroare(res,3);
+                    }
+                    else{
+                        res.render("pagini/confirmare.ejs");
+                    }
+                })
+        })
+    }
+    catch (e){
+        console.log(e);
+        afisareEroare(res,2);
+    }
+})
+
  
 app.get("/*.ejs", function(req, res){
     afisareEroare(res,400);

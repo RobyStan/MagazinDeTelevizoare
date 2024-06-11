@@ -32,13 +32,13 @@
             <li><a href="/inregistrare">
                 <div>Inregistrare</div>
             </a></li>
-            <li><a href="#">
-                <div>Despre</div>
+            <li>
+                <a href="#">Despre</a>
                 <ul>
-                    <li><a href="despre.html#prezentare"><span class="sageata">&#8594;</span>Prezentare</a></li>
-                    <li><a href="despre.html#istoric"><span class="sageata">&#8594;</span>Istoric</a></li>
-                    <li><a href="despre.html#motivatie"><span class="sageata">&#8594;</span>Motivatie</a></li>
-                    <li><a href="despre.html#galerie"><span class="sageata">&#8594;</span>Galerie</a></li>
+                    <li><a href="/despre#prezentare"><span class="sageata">&#8594;</span> Prezentare</a></li>
+                    <li><a href="/despre#istoric"><span class="sageata">&#8594;</span> Istoric</a></li>
+                    <li><a href="/despre#motivatie"><span class="sageata">&#8594;</span> Motivatie</a></li>
+                    <li><a href="/despre#galerie"><span class="sageata">&#8594;</span> Galerie</a></li>
                 </ul>
             </li>
             <li><a href="/produse">
@@ -47,5 +47,11 @@
             <li><a href="#">
                     <div>Contact</div>
                 </a></li>
+                <%- 
+                include("submeniu-administrare.ejs") 
+            %>
+            <%- 
+                include("submeniu-utilizator-logat.ejs") 
+            %>
         </ul>
     </nav>
