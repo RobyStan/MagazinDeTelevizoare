@@ -32,9 +32,6 @@ VALUES ('Televizor LCD', 'Magazin Fizic', 'Televizor LCD cu rezoluție Full HD',
 INSERT INTO televizoare (nume, locatie_disponibila, descriere, pret, diagonala, categorie, calitate, garantie, imagine)
 VALUES ('Televizor QLED', 'Depozit Central', 'Televizor QLED cu rezoluție 4K și tehnologie Quantum Dot', 2000.00, 50, 'Samsung', '{4K}', TRUE, 'qled_tv.jpg');
 
-INSERT INTO televizoare (nume, locatie_disponibila, descriere, pret, diagonala, categorie, calitate, imagine)
-VALUES ('Televizor NanoCell', 'Magazin Online', 'Televizor NanoCell cu rezoluție 4K și tehnologie avansată de afișare a culorilor', 1800.00, 55, 'LG', '{4K}', 'nanocell_tv.jpg');
-
 INSERT INTO televizoare (nume, locatie_disponibila, descriere, pret, diagonala, categorie, calitate, garantie, imagine)
 VALUES ('Televizor Smart Android', 'Magazin Online', 'Televizor Smart cu sistem de operare Android și rezoluție 4K', 1700.00, 50, 'Philips', '{4K}', TRUE, 'smart_android_tv.jpg');
 

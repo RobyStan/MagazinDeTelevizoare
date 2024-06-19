@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include("../fragmente/head.ejs") %>
+    <link href="/resurse/css/seturi.css" type="text/css" rel="stylesheet" />
+    <title>Seturi de produse</title>
+</head>
+<body>
+    <%- include("../fragmente/header.ejs") %>
+    <main>
+        <section>
+            <h2>Seturi de produse</h2>
+            <div class="grid-seturi">
+                <% seturi.forEach(set => { %>
+                    <div class="set">
+                        <h3><%= set.nume_set %></h3>
+                        <p><%= set.descriere_set %></p>
+                        <ul>
+                            <% set.produse.forEach(produs => { %>
+                                <li><a href="/produs/<%= produs.id %>"><%= produs.nume %></a></li>
+                            <% }); %>
+                        </ul>
+                        <p class="pret-initial">Preț inițial: <%= set.pret_initial %> RON</p>
+                        <p class="pret-final">Preț final cu reducere: <%= set.pret_final %> RON</p>
+                    </div>
+                <% }); %>
+            </div>
+        </section>
+    </main>
+    <%- include("../fragmente/footer.ejs") %>
+</body>
+</html>

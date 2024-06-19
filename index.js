@@ -1,4 +1,3 @@
-
 const express = require("express");
 const fs= require('fs');
 const path=require('path');
@@ -144,28 +143,74 @@ app.get("/produse", function(req, res){
     });
 })
 
-app.get("/produs/:id", function(req, res){
-    // Obține produsul curent
-    client.query(`select * from televizoare where id=${req.params.id}`, function(err, rez){
+app.get("/seturi", function(req, res) {
+    client.query(`SELECT s.id, s.nume_set, s.descriere_set, 
+                        json_agg(json_build_object('id', t.id, 'nume', t.nume, 'pret', t.pret)) as produse, 
+                        SUM(t.pret) as pret_initial, 
+                        COUNT(t.id) as numar_produse
+                 FROM seturi s
+                 JOIN asociere_set a ON s.id = a.id_set
+                 JOIN televizoare t ON a.id_produs = t.id
+                 GROUP BY s.id`, function(err, rez){
         if (err){
             console.log(err);
             afisareEroare(res, 2);
+        } else {
+            let seturi = rez.rows.map(set => {
+                let reducere = Math.min(5, set.numar_produse) * 5;
+                set.pret_final = set.pret_initial * (1 - reducere / 100);
+                return set;
+            });
+            res.render("pagini/seturi", {seturi: seturi});
         }
-        else{
+    });
+});
+
+
+app.get("/produs/:id", function(req, res) {
+    client.query(`SELECT * FROM televizoare WHERE id=${req.params.id}`, function(err, rez) {
+        if (err) {
+            console.log(err);
+            afisareEroare(res, 2);
+        } else {
             let produs = rez.rows[0];
-            // Obține produse similare
-            client.query(`select * from televizoare where categorie='${produs.categorie}' and id != ${produs.id} limit 4`, function(err, rezProduseSimilare){
-                if (err){
+            client.query(`SELECT s.id, s.nume_set, s.descriere_set, 
+                                 json_agg(json_build_object('id', t.id, 'nume', t.nume)) as produse, 
+                                 SUM(t.pret) as pret_initial, 
+                                 COUNT(t.id) as numar_produse
+                          FROM seturi s
+                          JOIN asociere_set a ON s.id = a.id_set
+                          JOIN televizoare t ON a.id_produs = t.id
+                          WHERE s.id IN (SELECT id_set FROM asociere_set WHERE id_produs=${req.params.id})
+                          GROUP BY s.id`, function(err, rezSeturi) {
+                if (err) {
                     console.log(err);
                     afisareEroare(res, 2);
-                }
-                else{
-                    res.render("pagini/produs", {prod: produs, produseSimilare: rezProduseSimilare.rows});
+                } else {
+                    let seturi = rezSeturi.rows.map(set => {
+                        let reducere = Math.min(5, set.numar_produse) * 5;
+                        set.pret_final = set.pret_initial * (1 - reducere / 100);
+                        return set;
+                    });
+                    client.query(`SELECT * FROM televizoare WHERE categorie='${produs.categorie}' AND id != ${produs.id} LIMIT 4`, function(err, rezProduseSimilare) {
+                        if (err) {
+                            console.log(err);
+                            afisareEroare(res, 2);
+                        } else {
+                            res.render("pagini/produs", {
+                                prod: produs,
+                                produseSimilare: rezProduseSimilare.rows,
+                                seturi: seturi
+                            });
+                        }
+                    });
                 }
             });
         }
-    })
-})
+    });
+});
+
+
 
 // ----------------------------- Utilizatori --------------------------
 app.post("/inregistrare",function(req, res){

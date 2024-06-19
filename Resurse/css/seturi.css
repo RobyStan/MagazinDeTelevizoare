@@ -1,0 +1,90 @@
+main {
+    --padd-main: 1rem;
+    padding-left: var(--padd-main);
+    padding-right: var(--padd-main);
+}
+
+.grid-seturi {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.grid-seturi .set {
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 2rem;
+    box-shadow: 0px 0px 0.8rem 0.3rem grey;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.grid-seturi .set h3 {
+    background-color: var(--culoare-roz-inchis);
+    text-align: center;
+    margin-top: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.grid-seturi .set h3 a {
+    color: black;
+}
+
+.grid-seturi .set h3 a:hover {
+    color: white;
+}
+
+.grid-seturi .set ul {
+    list-style-type: none;
+    padding-left: 0;
+    flex-grow: 1;
+}
+
+.grid-seturi .set ul li {
+    background-color: var(--cl-marcare);
+    margin: 5px 0;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.grid-seturi .set ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+.grid-seturi .set ul li a:hover {
+    text-decoration: underline;
+}
+
+.grid-seturi .set p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.grid-seturi .set .pret-initial,
+.grid-seturi .set .pret-final {
+    display: block;
+    margin: 10px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .grid-seturi {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-seturi {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-seturi {
+        grid-template-columns: 1fr;
+    }
+}

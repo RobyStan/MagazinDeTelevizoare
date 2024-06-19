@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ro">
-
 <head>
     <%- include("../fragmente/head.ejs") %>
     <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
@@ -9,10 +8,8 @@
     <title>Magazin de televizoare TeleX</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
     <%- include("../fragmente/header.ejs") %>
-
     <main>
         <section>
             <h2>Pagină produs</h2>
@@ -57,7 +54,6 @@
                 <button class="buton-compara">Compară</button>
             </article>
         </section>
-
         <section id="produse-similare">
             <h3>Produse similare</h3>
             <div class="grid-produse">
@@ -79,13 +75,27 @@
                 <% } %>
             </div>
         </section>
+        <!-- Secțiunea pentru seturi -->
+        <section>
+            <h3>Seturi din care face parte</h3>
+            <% seturi.forEach(set => { %>
+                <div class="set">
+                    <h4><%= set.nume_set %></h4>
+                    <p><%= set.descriere_set %></p>
+                    <ul>
+                        <% set.produse.forEach(produs => { %>
+                            <li><a href="/produs/<%= produs.id %>"><%= produs.nume %></a></li>
+                        <% }); %>
+                    </ul>
+                    <p>Preț inițial: <%= set.pret_initial %> RON</p>
+                    <p>Preț final cu reducere: <%= set.pret_final %> RON</p>
+                </div>
+            <% }); %>
+        </section>
     </main>
-
     <%- include("../fragmente/footer") %>
-    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="/resurse/js/produs.js"></script>
 </body>
-
 </html>
