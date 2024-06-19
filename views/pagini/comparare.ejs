@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include("../fragmente/head.ejs") %>
+    <meta charset="UTF-8">
+    <title>Comparare Produse</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <%- include("../fragmente/header.ejs") %>
+    <h1>Comparare Produse</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Specificatie</th>
+                <th>Produs 1</th>
+                <th>Produs 2</th>
+            </tr>
+        </thead>
+        <tbody id="comparare-tabel">
+        </tbody>
+    </table>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            const data = JSON.parse(params.get("data"));
+            const tbody = document.getElementById("comparare-tabel");
+            const specificatii = Object.keys(data[0]);
+
+            specificatii.forEach(spec => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${spec}</td>
+                    <td>${data[0][spec]}</td>
+                    <td>${data[1][spec] || ''}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        });
+    </script>
+    <%- include("../fragmente/footer") %>
+</body>
+</html>

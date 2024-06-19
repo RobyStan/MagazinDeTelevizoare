@@ -46,9 +46,9 @@ window.addEventListener("load", function() {
 
     document.getElementById("ok_cookies").onclick = function() {
         // Set cookie to expire after 7 days (for testing purposes, set to 5-6 seconds)
-         setCookie("acceptat_banner", true, 7 * 24 * 60 * 60 * 1000); // 7 days in milliseconds
+        // setCookie("acceptat_banner", true, 7 * 24 * 60 * 60 * 1000); // 7 days in milliseconds
         // For testing:
-        //setCookie("acceptat_banner", true, 6000); // 6 seconds in milliseconds
+        setCookie("acceptat_banner", true, 6000); // 6 seconds in milliseconds
         document.getElementById("banner").style.display = "none";
     }
 

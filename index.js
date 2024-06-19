@@ -99,6 +99,16 @@ app.get("/data", function(req, res){
 
 });
 
+app.get('/comparare', (req, res) => {
+    let data = [];
+    try {
+        data = JSON.parse(req.query.data);
+    } catch (e) {
+        console.error('Invalid JSON data', e);
+    }
+    res.render('pagini/comparare', { data }); // Specifică calea corectă către EJS
+});
+
 /*
 trimiterea unui mesaj dinamic in functie de parametri (req.params; req.query)
 ce face /* si ordinea app.get-urilor.
@@ -135,13 +145,24 @@ app.get("/produse", function(req, res){
 })
 
 app.get("/produs/:id", function(req, res){
+    // Obține produsul curent
     client.query(`select * from televizoare where id=${req.params.id}`, function(err, rez){
         if (err){
             console.log(err);
             afisareEroare(res, 2);
         }
         else{
-            res.render("pagini/produs", {prod: rez.rows[0]})
+            let produs = rez.rows[0];
+            // Obține produse similare
+            client.query(`select * from televizoare where categorie='${produs.categorie}' and id != ${produs.id} limit 4`, function(err, rezProduseSimilare){
+                if (err){
+                    console.log(err);
+                    afisareEroare(res, 2);
+                }
+                else{
+                    res.render("pagini/produs", {prod: produs, produseSimilare: rezProduseSimilare.rows});
+                }
+            });
         }
     })
 })
@@ -170,7 +191,7 @@ app.post("/inregistrare",function(req, res){
            
             utilizNou.parola=campuriText.parola[0];
             utilizNou.culoare_chat=campuriText.culoare_chat[0];
-            utilizNou.poza= poza[0];
+            utilizNou.poza= poza;
             Utilizator.getUtilizDupaUsername(campuriText.username[0], {}, function(u, parametru ,eroareUser ){
                 if (eroareUser==-1){//nu exista username-ul in BD
                     //TO DO salveaza utilizator
@@ -311,6 +332,60 @@ app.get("/cod/:username/:token",function(req,res){
     }
 })
 
+app.post("/profil", function(req, res){
+    console.log("profil");
+    if (!req.session.utilizator){
+        afisareEroare(res,403)
+        return;
+    }
+    var formular= new formidable.IncomingForm();
+ 
+    formular.parse(req,function(err, campuriText, campuriFile){
+       
+        var parolaCriptata=Utilizator.criptareParola(campuriText.parola[0]);
+ 
+        AccesBD.getInstanta().updateParametrizat(
+            {tabel:"utilizatori",
+            campuri:["nume","prenume","email","culoare_chat"],
+            valori:[
+                `${campuriText.nume[0]}`,
+                `${campuriText.prenume[0]}`,
+                `${campuriText.email[0]}`,
+                `${campuriText.culoare_chat[0]}`],
+            conditiiAnd:[
+                `parola='${parolaCriptata}'`,
+                `username='${campuriText.username[0]}'`
+            ]
+        },          
+        function(err, rez){
+            if(err){
+                console.log(err);
+                afisareEroare(res,2);
+                return;
+            }
+            console.log(rez.rowCount);
+            if (rez.rowCount==0){
+                res.render("pagini/profil",{mesaj:"Update-ul nu s-a realizat. Verificati parola introdusa."});
+                return;
+            }
+            else{            
+                //actualizare sesiune
+                console.log("ceva");
+                req.session.utilizator.nume= campuriText.nume[0];
+                req.session.utilizator.prenume= campuriText.prenume[0];
+                req.session.utilizator.email= campuriText.email[0];
+                req.session.utilizator.culoare_chat= campuriText.culoare_chat[0];
+                res.locals.utilizator=req.session.utilizator;
+            }
+ 
+ 
+            res.render("pagini/profil",{mesaj:"Update-ul s-a realizat cu succes."});
+ 
+        });
+       
+ 
+    });
+});
  
 app.get("/*.ejs", function(req, res){
     afisareEroare(res,400);

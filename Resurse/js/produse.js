@@ -1,16 +1,16 @@
-window.addEventListener("load", function() {
+document.addEventListener("DOMContentLoaded", function() {
     const textarea = document.getElementById('floatingTextarea');
 
-    textarea.addEventListener('input', function () {
+    const validateTextarea = () => {
         if (textarea.value.trim() === '') {
             textarea.classList.add('is-invalid');
         } else {
             textarea.classList.remove('is-invalid');
         }
-    });
-    if (textarea.value.trim() === '') {
-        textarea.classList.add('is-invalid');
-    }
+    };
+
+    textarea.addEventListener('input', validateTextarea);
+    validateTextarea();
 
     function replaceDiacritics(text) {
         const diacriticsMap = {
@@ -21,74 +21,62 @@ window.addEventListener("load", function() {
     }
 
     function marcheazaCeleMaiIeftineProduse() {
-        var produse = Array.from(document.getElementsByClassName("produs"));
-        var categorii = {};
+        const produse = Array.from(document.getElementsByClassName("produs"));
+        const categorii = {};
 
         produse.forEach(produs => {
-            let pret = parseFloat(produs.querySelector(".info-produse p:nth-of-type(1) span").innerHTML);
-            let categorie = produs.querySelector(".categorie span").innerHTML;
+            const pret = parseFloat(produs.querySelector(".info-produse p:nth-of-type(1) span").innerHTML);
+            const categorie = produs.querySelector(".categorie span").innerHTML;
 
             if (!categorii[categorie] || pret < categorii[categorie].pret) {
-                categorii[categorie] = {
-                    pret: pret,
-                    produs: produs
-                };
+                categorii[categorie] = { pret, produs };
             }
         });
 
-        for (let categorie in categorii) {
-            let produs = categorii[categorie].produs;
-            let eticheta = document.createElement("div");
+        Object.values(categorii).forEach(({ produs }) => {
+            const eticheta = document.createElement("div");
             eticheta.className = "eticheta-cel-mai-ieftin";
             eticheta.innerHTML = "Cel mai ieftin";
             produs.appendChild(eticheta);
-        }
+        });
     }
 
     function updateProductCount() {
-        var produse = document.getElementsByClassName("produs");
-        var count = 0;
-
-        for (let produs of produse) {
-            if (produs.style.display !== "none") {
-                count++;
-            }
-        }
-
-        var numarProduse = document.getElementById("numar-produse");
-        numarProduse.innerHTML = `Număr total de produse afișate: ${count}`;
+        const produse = document.getElementsByClassName("produs");
+        const count = Array.from(produse).filter(produs => produs.style.display !== "none").length;
+        document.getElementById("numar-produse").innerHTML = `Număr total de produse afișate: ${count}`;
     }
 
     function filtreazaProduse() {
-        var inpNume = replaceDiacritics(document.getElementById("inp-nume").value.toLowerCase().trim());
-        var inpPret = parseInt(document.getElementById("inp-pret").value);
-        var inpCategorie = document.getElementById("inp-categorie").value.toLowerCase().trim();
-        var inpDiagonalaMin = parseInt(document.getElementById("inp-diagonala-min").value);
-        var inpDiagonalaMax = parseInt(document.getElementById("inp-diagonala-max").value);
-        var inpGarantie = document.getElementById("inp-garantie").checked;
-        var inpCalitate = Array.from(document.querySelectorAll('input[name="calitate"]:checked')).map(checkbox => checkbox.value);
+        const inpNume = replaceDiacritics(document.getElementById("inp-nume").value.toLowerCase().trim());
+        const inpPret = parseInt(document.getElementById("inp-pret").value);
+        const inpCategorie = document.getElementById("inp-categorie").value.toLowerCase().trim();
+        const inpDiagonalaMin = parseInt(document.getElementById("inp-diagonala-min").value);
+        const inpDiagonalaMax = parseInt(document.getElementById("inp-diagonala-max").value);
+        const inpGarantie = document.getElementById("inp-garantie").checked;
+        const inpCalitate = Array.from(document.querySelectorAll('input[name="calitate"]:checked')).map(checkbox => checkbox.value);
 
-        var produse = document.getElementsByClassName("produs");
-        var produseVizibile = 0;
+        const produse = document.getElementsByClassName("produs");
+        let produseVizibile = 0;
 
-        for (let produs of produse) {
-            let valNume = replaceDiacritics(produs.querySelector(".nume a").innerHTML.toLowerCase().trim());
-            let cond1 = valNume.includes(inpNume);
+        Array.from(produse).forEach(produs => {
+            const valNume = replaceDiacritics(produs.querySelector(".nume a").innerHTML.toLowerCase().trim());
+            const cond1 = valNume.includes(inpNume);
 
-            let valPret = parseFloat(produs.querySelector(".info-produse p:nth-of-type(1) span").innerHTML);
-            let cond2 = (valPret >= inpPret);
+            const valPret = parseFloat(produs.querySelector(".info-produse p:nth-of-type(1) span").innerHTML);
+            const cond2 = valPret >= inpPret;
 
-            let valCategorie = produs.querySelector(".categorie span").innerHTML.toLowerCase().trim();
-            let cond3 = (inpCategorie == "toate" || inpCategorie == valCategorie);
+            const valCategorie = produs.querySelector(".categorie span").innerHTML.toLowerCase().trim();
+            const cond3 = inpCategorie === "toate" || inpCategorie === valCategorie;
 
-            let valDiagonala = parseInt(produs.querySelector(".info-produse p:nth-of-type(2) span").innerHTML);
-            let cond4 = (valDiagonala >= inpDiagonalaMin && valDiagonala <= inpDiagonalaMax);
+            const valDiagonala = parseInt(produs.querySelector(".info-produse p:nth-of-type(2) span").innerHTML);
+            const cond4 = valDiagonala >= inpDiagonalaMin && valDiagonala <= inpDiagonalaMax;
 
-            let valGarantie = produs.querySelector(".info-produse p:nth-of-type(5) span").innerHTML === "Da";
-            let cond5 = (!inpGarantie || valGarantie);
+            const valGarantie = produs.querySelector(".info-produse p:nth-of-type(5) span").innerHTML === "Da";
+            const cond5 = !inpGarantie || valGarantie;
 
-            let valCalitate = produs.querySelector(".info-produse p:nth-of-type(3) span").innerHTML.split(", ").map(item => item.trim());
-            let cond6 = (inpCalitate.length == 0 || inpCalitate.some(cal => valCalitate.includes(cal)));
+            const valCalitate = produs.querySelector(".info-produse p:nth-of-type(3) span").innerHTML.split(", ").map(item => item.trim());
+            const cond6 = inpCalitate.length === 0 || inpCalitate.some(cal => valCalitate.includes(cal));
 
             if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6) {
                 produs.style.display = "block";
@@ -96,20 +84,18 @@ window.addEventListener("load", function() {
             } else {
                 produs.style.display = "none";
             }
-        }
+        });
 
-        var mesajFiltrare = document.getElementById("mesaj-filtrare");
+        const mesajFiltrare = document.getElementById("mesaj-filtrare");
         if (produseVizibile === 0) {
             if (!mesajFiltrare) {
-                mesajFiltrare = document.createElement("p");
-                mesajFiltrare.id = "mesaj-filtrare";
-                mesajFiltrare.innerHTML = "Nu exista produse conform filtrării curente.";
-                document.querySelector("#produse .grid-produse").appendChild(mesajFiltrare);
+                const newMesajFiltrare = document.createElement("p");
+                newMesajFiltrare.id = "mesaj-filtrare";
+                newMesajFiltrare.innerHTML = "Nu exista produse conform filtrării curente.";
+                document.querySelector("#produse .grid-produse").appendChild(newMesajFiltrare);
             }
-        } else {
-            if (mesajFiltrare) {
-                mesajFiltrare.remove();
-            }
+        } else if (mesajFiltrare) {
+            mesajFiltrare.remove();
         }
 
         updateProductCount();
@@ -166,8 +152,7 @@ window.addEventListener("load", function() {
     document.getElementById("salveaza-filtrare").onchange = saveFilters;
 
     document.getElementById("resetare").onclick = function() {
-        var confirmare = confirm("Sigur doriți să resetați filtrele? Această acțiune va elimina toate filtrele și va afișa toate produsele.");
-        if (confirmare) {
+        if (confirm("Sigur doriți să resetați filtrele? Această acțiune va elimina toate filtrele și va afișa toate produsele.")) {
             document.getElementById("inp-nume").value = "";
             document.getElementById("inp-pret").value = document.getElementById("inp-pret").min;
             document.getElementById("infoRange").innerHTML = `(${document.getElementById("inp-pret").value})`;
@@ -179,12 +164,12 @@ window.addEventListener("load", function() {
             document.getElementById("salveaza-filtrare").checked = false;
             localStorage.removeItem("filters");
 
-            var produse = document.getElementsByClassName("produs");
-            for (let produs of produse) {
+            const produse = document.getElementsByClassName("produs");
+            Array.from(produse).forEach(produs => {
                 produs.style.display = "block";
-            }
+            });
 
-            var mesajFiltrare = document.getElementById("mesaj-filtrare");
+            const mesajFiltrare = document.getElementById("mesaj-filtrare");
             if (mesajFiltrare) {
                 mesajFiltrare.remove();
             }
@@ -192,25 +177,28 @@ window.addEventListener("load", function() {
             updateProductCount();
             marcheazaCeleMaiIeftineProduse();
         }
-    }
+    };
 
     function sortareProduse(ascendent) {
-        var produse = Array.from(document.getElementsByClassName("produs"));
+        const produse = Array.from(document.getElementsByClassName("produs"));
         produse.sort((a, b) => {
-            let pretA = parseFloat(a.querySelector(".info-produse p:nth-of-type(1) span").innerHTML);
-            let pretB = parseFloat(b.querySelector(".info-produse p:nth-of-type(1) span").innerHTML);
+            const pretA = parseFloat(a.querySelector(".info-produse p:nth-of-type(1) span").innerHTML);
+            const pretB = parseFloat(b.querySelector(".info-produse p:nth-of-type(1) span").innerHTML);
+            const numeA = replaceDiacritics(a.querySelector(".nume a").innerHTML.toLowerCase());
+            const numeB = replaceDiacritics(b.querySelector(".nume a").innerHTML.toLowerCase());
 
-            let numeA = replaceDiacritics(a.querySelector(".nume a").innerHTML.toLowerCase());
-            let numeB = replaceDiacritics(b.querySelector(".nume a").innerHTML.toLowerCase());
-
-            if (pretA == pretB) {
+            if (pretA === pretB) {
                 return ascendent ? numeA.localeCompare(numeB) : numeB.localeCompare(numeA);
             }
             return ascendent ? pretA - pretB : pretB - pretA;
         });
 
-        var container = document.querySelector(".grid-produse");
+        const container = document.querySelector(".grid-produse");
         produse.forEach(produs => container.appendChild(produs));
+
+        container.style.display = "grid";
+        container.style.gridTemplateColumns = "repeat(3, 1fr)";
+        container.style.gap = "10px";
 
         updateProductCount();
         marcheazaCeleMaiIeftineProduse();
@@ -218,32 +206,32 @@ window.addEventListener("load", function() {
 
     document.getElementById("sortCrescNume").onclick = function() {
         sortareProduse(true);
-    }
+    };
 
     document.getElementById("sortDescrescNume").onclick = function() {
         sortareProduse(false);
-    }
+    };
 
     document.getElementById("calculeaza").onclick = function() {
-        var suma = 0;
-        var numarElemente = 0;
+        let suma = 0;
+        let numarElemente = 0;
+        const produse = document.getElementsByClassName("produs");
+        const preturi = [];
 
-        var produse = document.getElementsByClassName("produs");
-        for (let produs of produse) {
-            var stil = getComputedStyle(produs)
-            if (stil.display != "none") {
-                suma += parseFloat(produs.querySelector(".info-produse p:nth-of-type(1) span").innerHTML);
+        Array.from(produse).forEach(produs => {
+            if (getComputedStyle(produs).display !== "none") {
+                const pret = parseFloat(produs.querySelector(".info-produse p:nth-of-type(1) span").innerHTML);
+                suma += pret;
                 numarElemente++;
+                preturi.push(pret);
             }
-        }
+        });
 
-        var media = suma / numarElemente;
+        const media = suma / numarElemente;
+        const minim = Math.min(...preturi);
+        const maxim = Math.max(...preturi);
 
-        var preturi = Array.from(produse).map(produs => parseFloat(produs.querySelector(".info-produse p:nth-of-type(1) span").innerHTML));
-        var minim = Math.min(...preturi);
-        var maxim = Math.max(...preturi);
-
-        var rezultatDiv = document.createElement("div");
+        const rezultatDiv = document.createElement("div");
         rezultatDiv.style.position = "fixed";
         rezultatDiv.style.top = "50%";
         rezultatDiv.style.left = "50%";
@@ -252,20 +240,113 @@ window.addEventListener("load", function() {
         rezultatDiv.style.background = "#fff";
         rezultatDiv.style.border = "2px solid #333";
         rezultatDiv.style.zIndex = "9999";
-
         rezultatDiv.innerHTML = `
             <p>Suma prețurilor: ${suma}</p>
             <p>Media prețurilor: ${media.toFixed(2)}</p>
             <p>Prețul minim: ${minim}</p>
             <p>Prețul maxim: ${maxim}</p>
         `;
-
         document.body.appendChild(rezultatDiv);
 
-        setTimeout(function() {
+        setTimeout(() => {
             rezultatDiv.remove();
         }, 2000);
+    };
+
+    // Funcționalitatea de comparare produse
+    let comparareProduse = JSON.parse(localStorage.getItem("comparareProduse")) || [];
+    const containerComparare = document.createElement("div");
+    containerComparare.id = "container-comparare";
+    containerComparare.style.position = "fixed";
+    containerComparare.style.bottom = "10px";
+    containerComparare.style.right = "10px";
+    containerComparare.style.background = "#fff";
+    containerComparare.style.border = "1px solid #ccc";
+    containerComparare.style.padding = "10px";
+    containerComparare.style.zIndex = "1000";
+
+    function updateComparareContainer() {
+        containerComparare.innerHTML = comparareProduse.map((produs, index) => `
+            <div>
+                ${produs.nume}
+                <button class="sterge-comparare" data-index="${index}">Șterge</button>
+            </div>
+        `).join('') + (comparareProduse.length == 2 ? '<button id="afiseaza-comparare">Afișează</button>' : '');
+
+        if (comparareProduse.length > 0) {
+            document.body.appendChild(containerComparare);
+        } else if (containerComparare.parentNode) {
+            containerComparare.parentNode.removeChild(containerComparare);
+        }
+
+        localStorage.setItem("comparareProduse", JSON.stringify(comparareProduse));
     }
+
+    function adaugaLaComparare(produs) {
+        if (comparareProduse.length < 2) {
+            comparareProduse.push(produs);
+            updateComparareContainer();
+        }
+
+        if (comparareProduse.length == 2) {
+            document.querySelectorAll('.buton-compara').forEach(btn => {
+                btn.disabled = true;
+                btn.title = "ștergeți un produs din lista de comparare";
+            });
+        }
+    }
+
+    function stergeDinComparare(index) {
+        comparareProduse.splice(index, 1);
+        updateComparareContainer();
+
+        if (comparareProduse.length < 2) {
+            document.querySelectorAll('.buton-compara').forEach(btn => {
+                btn.disabled = false;
+                btn.title = "";
+            });
+        }
+    }
+
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('buton-compara')) {
+            const produsElement = event.target.closest('.produs');
+            const produs = {
+                id: produsElement.id,
+                nume: produsElement.querySelector('.nume a').innerText,
+                specificatii: {
+                    pret: produsElement.querySelector(".info-produse p:nth-of-type(1) span").innerText,
+                    diagonala: produsElement.querySelector(".info-produse p:nth-of-type(2) span").innerText,
+                    calitate: produsElement.querySelector(".info-produse p:nth-of-type(3) span").innerText,
+                    garantie: produsElement.querySelector(".info-produse p:nth-of-type(5) span").innerText,
+                    categorie: produsElement.querySelector(".categorie span").innerText
+                }
+            };
+            adaugaLaComparare(produs);
+        } else if (event.target.classList.contains('sterge-comparare')) {
+            const index = parseInt(event.target.getAttribute('data-index'), 10);
+            stergeDinComparare(index);
+        } else if (event.target.id === 'afiseaza-comparare') {
+            const url = "/comparare"; 
+            const comparareData = comparareProduse.map(p => p.specificatii);
+            const params = new URLSearchParams();
+            params.set("data", JSON.stringify(comparareData));
+            window.open(`${url}?${params.toString()}`);
+        }
+    });
+
+    // Persistența containerului
+    if (comparareProduse.length > 0) {
+        updateComparareContainer();
+    }
+
+    // Adăugarea butoanelor de comparare în pagină
+    document.querySelectorAll('.produs').forEach(produsElement => {
+        const butonCompara = document.createElement('button');
+        butonCompara.className = 'buton-compara';
+        butonCompara.innerText = 'Compară';
+        produsElement.appendChild(butonCompara);
+    });
 
     loadFilters();
     filtreazaProduse();

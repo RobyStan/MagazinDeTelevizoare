@@ -7,15 +7,14 @@ main {
 .grid-produse {
     display: flex;
     flex-wrap: wrap;
-
-    gap: 0; /* Ensure no gaps between items */
+    gap: 0;
 }
 
 .grid-produse .produs {
-    flex: 1 1 calc(33.33% - 0); /* Adjust the width as needed */
+    flex: 1 1 calc(33.33% - 0);
     box-sizing: border-box;
     margin: 0;
-    padding: 10px; /* Add padding if needed */
+    padding: 10px;
     border-radius: 2rem;
     box-shadow: 0px 0px 0.8rem 0.3rem grey;
     overflow: hidden;
@@ -43,11 +42,11 @@ main {
 
 .grid-produse .produs figure img {
     border: 1px solid grey;
-    width: 100%; /* Width set to 100% of the container */
-    height: auto; /* Height set to auto to maintain aspect ratio */
-    max-width: 400px; /* Max width set to 400px */
-    max-height: 300px; /* Max height set to 300px */
-    object-fit: cover; /* Ensures the image is resized to cover the given dimensions */
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    max-height: 300px;
+    object-fit: cover;
 }
 
 .grid-produse .produs .info-prod {
@@ -83,7 +82,7 @@ main {
     padding: 0.5rem;
     border-radius: 0.75rem;
     position: absolute;
-    top: 65px;
+    top: 10px;
     right: 10px;
 }
 
@@ -104,36 +103,36 @@ main {
     border: 1px solid var(--culoare-mov);
 }
 
-
 @media (max-width: 1024px) {
     .grid-produse .produs {
-        flex: 1 1 calc(50% - 0); 
+        flex: 1 1 calc(50% - 0);
     }
 
     .grid-produse .produs figure img {
-        max-width: 150px; 
-        max-height: 100px; 
+        max-width: 150px;
+        max-height: 100px;
     }
 }
 
 @media (max-width: 768px) {
     .grid-produse .produs {
-        flex: 1 1 calc(100% - 0); 
+        flex: 1 1 calc(100% - 0);
     }
 
     .grid-produse .produs figure img {
-        max-width: 120px; 
-        max-height: 90px; 
+        max-width: 120px;
+        max-height: 90px;
     }
 }
 
 @media (max-width: 480px) {
     .grid-produse .produs {
-        flex: 1 1 calc(100% - 0); 
+        flex: 1 1 calc(100% - 0);
     }
 
     .grid-produse .produs figure img {
-        max-width: 100px; 
-        max-height: 75px; 
+        max-width: 100px;
+        max-height: 75px;
     }
 }
+
