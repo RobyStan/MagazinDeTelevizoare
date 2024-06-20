@@ -1,0 +1,23 @@
+{
+    "oferte": [
+      {
+        "categorie": "LG",
+        "data-incepere": "2024-06-20T14:00:00Z",
+        "data-finalizare": "2024-06-20T17:00:00Z",
+        "reducere": 25
+      },
+      {
+        "categorie": "Sony",
+        "data-incepere": "2024-06-20T16:00:00Z",
+        "data-finalizare": "2024-06-20T16:15:00Z",
+        "reducere": 15
+      },
+      {
+        "categorie": "Samsung",
+        "data-incepere": "2024-06-20T15:45:00Z",
+        "data-finalizare": "2024-06-20T16:00:00Z",
+        "reducere": 20
+      }
+    ]
+  }
+  

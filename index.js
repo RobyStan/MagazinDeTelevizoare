@@ -98,6 +98,84 @@ app.get("/data", function(req, res){
 
 });
 
+function generateOffer() {
+    client.query("SELECT DISTINCT categorie FROM televizoare", (err, res) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        
+        const categories = res.rows.map(row => row.categorie);
+        const reductions = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+        
+        fs.readFile(path.join(__dirname, 'resurse/json/oferte.json'), 'utf8', (err, data) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+
+            let offers = JSON.parse(data).oferte;
+            const lastOffer = offers[0];
+            let newCategory;
+
+            do {
+                newCategory = categories[Math.floor(Math.random() * categories.length)];
+            } while (lastOffer && lastOffer.categorie === newCategory);
+
+            const newReduction = reductions[Math.floor(Math.random() * reductions.length)];
+            const now = new Date();
+            const end = new Date(now.getTime() + 1 * 60 * 60 * 1000); // Interval de 1 oră pentru prezentare
+
+            const newOffer = {
+                categorie: newCategory,
+                "data-incepere": now.toISOString(),
+                "data-finalizare": end.toISOString(),
+                reducere: newReduction
+            };
+
+            offers.unshift(newOffer);
+
+            fs.writeFile(path.join(__dirname, 'resurse/json/oferte.json'), JSON.stringify({ oferte: offers }, null, 4), (err) => {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log("New offer generated:", newOffer);
+                }
+            });
+        });
+    });
+}
+
+setInterval(generateOffer, 1 * 60 * 60 * 1000); // Interval de 1 oră pentru prezentare
+
+function cleanupOldOffers() {
+    fs.readFile(path.join(__dirname, 'resurse/json/oferte.json'), 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+
+        const offers = JSON.parse(data).oferte;
+        const now = new Date();
+        const T2 = 24 * 60 * 60 * 1000; // 24 ore pentru ștergerea ofertelor vechi
+
+        const filteredOffers = offers.filter(offer => {
+            const endTime = new Date(offer['data-finalizare']).getTime();
+            return (now.getTime() - endTime) < T2;
+        });
+
+        fs.writeFile(path.join(__dirname, 'resurse/json/oferte.json'), JSON.stringify({ oferte: filteredOffers }, null, 4), (err) => {
+            if (err) {
+                console.error(err);
+            } else {
+                console.log("Old offers cleaned up");
+            }
+        });
+    });
+}
+
+setInterval(cleanupOldOffers, 24 * 60 * 60 * 1000); // Rulează la fiecare 24 de ore
+
 app.get('/comparare', (req, res) => {
     let data = [];
     try {

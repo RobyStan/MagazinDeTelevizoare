@@ -1,3 +1,4 @@
+/* Schema cromatica */
 body {
   --culoare1: #E87909;
   --culoare-inchisa: #d92d0a;
@@ -15,6 +16,7 @@ body {
   background-position: center; /* Centrează imaginea pe ecran */
   background-repeat: no-repeat
 }
+/* Schema cromatica */
 
 body.dark {
   --culoare1: #a15329;
@@ -34,6 +36,7 @@ body.dark {
   padding-right: var(--spatiere);
 }
 
+/*link-top*/
 #link-top {
     position:fixed;
     bottom:3em;
@@ -88,7 +91,9 @@ body.dark {
 #link-top:hover>#arrow .tooltiptext {
   visibility: visible;
 }
+/*link-top*/
 
+/* Task tabel*/
 #tab-orar th,
 #tab-orar td {
   border: 1px solid black;
@@ -121,6 +126,7 @@ body.dark {
   background-color: var(--culoare-background);
   font-size: 120%;
 }
+/* Task tabel*/
 
 .container {
   overflow-x: auto;
@@ -138,6 +144,7 @@ caption {
   }
 }
 
+/* Task taburi iframe*/
 .container-iframe {
   display: flex;
   width: 55%;
@@ -174,6 +181,7 @@ caption {
   color: var(--culoare-text-selectat);
   box-shadow: inset 10px 0 0 var(--culoare1);
 }
+/* Task taburi iframe*/
 
 a[href^="http"]::before {
   content: "⮳ "; 

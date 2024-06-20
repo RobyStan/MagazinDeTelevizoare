@@ -1,5 +1,4 @@
-
-    let tema=localStorage.getItem("tema");
+let tema=localStorage.getItem("tema");
     if(tema)
         document.body.classList.add("dark");
         
