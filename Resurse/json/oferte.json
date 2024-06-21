@@ -1,6 +1,18 @@
 {
     "oferte": [
         {
+            "categorie": "Sony",
+            "data-incepere": "2024-06-21T13:08:30.885Z",
+            "data-finalizare": "2024-06-21T14:08:30.885Z",
+            "reducere": 35
+        },
+        {
+            "categorie": "Philips",
+            "data-incepere": "2024-06-21T12:04:13.769Z",
+            "data-finalizare": "2024-06-21T13:04:13.769Z",
+            "reducere": 45
+        },
+        {
             "categorie": "Samsung",
             "data-incepere": "2024-06-20T20:18:16.828Z",
             "data-finalizare": "2024-06-20T21:18:16.828Z",
