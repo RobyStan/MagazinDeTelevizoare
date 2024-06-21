@@ -1,9 +1,11 @@
+<!--bonus1-->
 <%
 let minPret = Math.min(...produse.map(p => p.pret));
 let maxPret = Math.max(...produse.map(p => p.pret));
 let minDiagonala = Math.min(...produse.map(p => p.diagonala));
 let maxDiagonala = Math.max(...produse.map(p => p.diagonala));
 %>
+<!--bonus1-->
 
 <!DOCTYPE html>
 <html lang="ro">
@@ -24,11 +26,13 @@ let maxDiagonala = Math.max(...produse.map(p => p.diagonala));
             <label for="inp-nume">Nume:</label>
             <input type="text" class="form-control" id="inp-nume">
         </div>
+        <!--bonus1-->
         <div class="col-md-6 mb-3">
             <label for="inp-pret">Pret minim:</label>
             <input type="range" class="form-range" id="inp-pret" value="<%= minPret %>" min="<%= minPret %>" max="<%= maxPret %>">
             <span id="infoRange">(<%= minPret %>)</span>
         </div>
+        <!--bonus1-->
     </div>
     <div class="row mb-3">
         <div class="col-md-6 mb-3">
@@ -41,6 +45,7 @@ let maxDiagonala = Math.max(...produse.map(p => p.diagonala));
                 <option value="Philips">Philips</option>
             </select>
         </div>
+        <!--bonus1-->
         <div class="col-md-3 mb-3">
             <label for="inp-diagonala-min">Diagonala minima:</label>
             <input type="number" class="form-control" id="inp-diagonala-min" value="<%= minDiagonala %>" min="<%= minDiagonala %>">
@@ -49,6 +54,7 @@ let maxDiagonala = Math.max(...produse.map(p => p.diagonala));
             <label for="inp-diagonala-max">Diagonala maxima:</label>
             <input type="number" class="form-control" id="inp-diagonala-max" value="<%= maxDiagonala %>" max="<%= maxDiagonala %>">
         </div>
+        <!--bonus1-->
     </div>
     <div class="row mb-3">
         <div class="col-md-6 mb-3">

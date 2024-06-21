@@ -65,7 +65,6 @@ nav {
 .meniu li a .sageata {
   display: inline-block;
   opacity: 0;
-  transform: translateX(-30px);
   transition: opacity 0.2s 0.2s, transform 1s;
 }
 .meniu li a:hover .sageata {

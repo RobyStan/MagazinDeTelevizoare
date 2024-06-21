@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // se execută după ce tot conținutul HTML a fost complet încărcat si Document Object Model incarcat
+
     const textarea = document.getElementById('floatingTextarea');
 
     const validateTextarea = () => {
@@ -10,101 +12,163 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     textarea.addEventListener('input', validateTextarea);
-    validateTextarea();
+    // Adaugă un eveniment de tip 'input' pe textarea care va apela funcția 'validateTextarea' la fiecare modificare de conținut.
 
+    validateTextarea();
+    // Validează textarea inițial, pentru cazul în care există deja un text în textarea la încărcarea paginii.
+
+    //bonus 7
     function replaceDiacritics(text) {
         const diacriticsMap = {
             'ă': 'a', 'â': 'a', 'î': 'i', 'ș': 's', 'ț': 't',
             'Ă': 'A', 'Â': 'A', 'Î': 'I', 'Ș': 'S', 'Ț': 'T'
         };
-        return text.replace(/[ăâîșțĂÂÎȘȚ]/g, match => diacriticsMap[match]);
-    }
+        // Un obiect care mapează diacriticele la caracterele lor fără diacritice.
 
+        return text.replace(/[ăâîșțĂÂÎȘȚ]/g, match => diacriticsMap[match]);
+        // Înlocuiește fiecare caracter care se potrivește cu diacriticele din text folosind funcția de mapare 'diacriticsMap'.
+    }
+    //bonus 7
+
+    //bonus 14
     function marcheazaCeleMaiIeftineProduse() {
         const produse = Array.from(document.getElementsByClassName("produs"));
+        // Obține toate elementele cu clasa 'produs' și le transformă într-un array.
+
         const categorii = {};
+        // Un obiect pentru stocarea celui mai ieftin produs din fiecare categorie.
 
         produse.forEach(produs => {
             const pret = parseFloat(produs.querySelector(".info-produse p:nth-of-type(1) span").innerHTML);
+            // Obține prețul produsului și îl convertește într-un număr cu virgulă mobilă.
             const categorie = produs.querySelector(".categorie span").innerHTML;
+            // Obține categoria produsului.
 
             if (!categorii[categorie] || pret < categorii[categorie].pret) {
+                // Dacă categoria nu există în obiectul categorii sau prețul curent este mai mic decât prețul stocat pentru această categorie:
                 categorii[categorie] = { pret, produs };
+                // Actualizează obiectul categorii cu produsul curent și prețul său.
             }
         });
 
         Object.values(categorii).forEach(({ produs }) => {
+            // Iterează prin valorile obiectului categorii.
             const eticheta = document.createElement("div");
+            // Creează un nou element div pentru eticheta.
             eticheta.className = "eticheta-cel-mai-ieftin";
+            // Setează clasa div-ului la 'eticheta-cel-mai-ieftin'.
             eticheta.innerHTML = "Cel mai ieftin";
+            // Setează conținutul div-ului la textul "Cel mai ieftin".
             produs.appendChild(eticheta);
+            // Adaugă eticheta ca fiu al elementului produs.
         });
     }
-
+    //bonus 14
+    //bonus 15
     function updateProductCount() {
         const produse = document.getElementsByClassName("produs");
         const count = Array.from(produse).filter(produs => produs.style.display !== "none").length;
+        // Numără câte produse sunt afișate (nu au stilul display: none).
         document.getElementById("numar-produse").innerHTML = `Număr total de produse afișate: ${count}`;
+        // Actualizează conținutul elementului cu id-ul 'numar-produse' cu numărul total de produse afișate.
     }
-
+    //bonus 15
+    //bonus 3
     function filtreazaProduse() {
         const inpNume = replaceDiacritics(document.getElementById("inp-nume").value.toLowerCase().trim());
+        // Obține și normalizează (fără diacritice, în litere mici, fără spații la început și sfârșit) valoarea input-ului pentru nume.
         const inpPret = parseInt(document.getElementById("inp-pret").value);
+        // Obține și convertește în număr valoarea input-ului pentru preț.
         const inpCategorie = document.getElementById("inp-categorie").value.toLowerCase().trim();
+        // Obține și normalizează valoarea input-ului pentru categorie.
         const inpDiagonalaMin = parseInt(document.getElementById("inp-diagonala-min").value);
+        // Obține și convertește în număr valoarea input-ului pentru diagonala minimă.
         const inpDiagonalaMax = parseInt(document.getElementById("inp-diagonala-max").value);
+        // Obține și convertește în număr valoarea input-ului pentru diagonala maximă.
         const inpGarantie = document.getElementById("inp-garantie").checked;
+        // Obține valoarea input-ului pentru garanție (true/false).
         const inpCalitate = Array.from(document.querySelectorAll('input[name="calitate"]:checked')).map(checkbox => checkbox.value);
+        // Obține valorile input-urilor pentru calitate care sunt bifate.
 
         const produse = document.getElementsByClassName("produs");
         let produseVizibile = 0;
 
         Array.from(produse).forEach(produs => {
             const valNume = replaceDiacritics(produs.querySelector(".nume a").innerHTML.toLowerCase().trim());
+            // Obține și normalizează valoarea numelui produsului.
             const cond1 = valNume.includes(inpNume);
+            // Verifică dacă numele produsului conține valoarea input-ului pentru nume.
 
             const valPret = parseFloat(produs.querySelector(".info-produse p:nth-of-type(1) span").innerHTML);
+            // Obține și convertește în număr valoarea prețului produsului.
             const cond2 = valPret >= inpPret;
+            // Verifică dacă prețul produsului este mai mare sau egal cu valoarea input-ului pentru preț.
 
             const valCategorie = produs.querySelector(".categorie span").innerHTML.toLowerCase().trim();
+            // Obține și normalizează valoarea categoriei produsului.
             const cond3 = inpCategorie === "toate" || inpCategorie === valCategorie;
+            // Verifică dacă categoria produsului este egală cu valoarea input-ului pentru categorie sau dacă input-ul este 'toate'.
 
             const valDiagonala = parseInt(produs.querySelector(".info-produse p:nth-of-type(2) span").innerHTML);
+            // Obține și convertește în număr valoarea diagonalei produsului.
             const cond4 = valDiagonala >= inpDiagonalaMin && valDiagonala <= inpDiagonalaMax;
+            // Verifică dacă diagonala produsului este între valorile input-urilor pentru diagonala minimă și maximă.
 
             const valGarantie = produs.querySelector(".info-produse p:nth-of-type(5) span").innerHTML === "Da";
+            // Obține valoarea garanției produsului.
             const cond5 = !inpGarantie || valGarantie;
+            // Verifică dacă input-ul pentru garanție este bifat și dacă produsul are garanție.
 
             const valCalitate = produs.querySelector(".info-produse p:nth-of-type(3) span").innerHTML.split(", ").map(item => item.trim());
+            // Obține și normalizează valoarea calității produsului.
             const cond6 = inpCalitate.length === 0 || inpCalitate.some(cal => valCalitate.includes(cal));
+            // Verifică dacă input-urile pentru calitate sunt bifate și dacă calitatea produsului conține aceste valori.
 
+            // Afișează produsul dacă toate condițiile sunt îndeplinite.
             if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6) {
                 produs.style.display = "block";
                 produseVizibile++;
             } else {
+                // Ascunde produsul dacă oricare dintre condiții nu este îndeplinită.
                 produs.style.display = "none";
             }
         });
 
         const mesajFiltrare = document.getElementById("mesaj-filtrare");
+        // Obține elementul pentru mesajul de filtrare.
         if (produseVizibile === 0) {
+            // Dacă nu există produse vizibile:
             if (!mesajFiltrare) {
+                // Dacă mesajul de filtrare nu există deja:
                 const newMesajFiltrare = document.createElement("p");
+                // Creează un nou element p pentru mesaj.
                 newMesajFiltrare.id = "mesaj-filtrare";
+                // Setează id-ul mesajului.
                 newMesajFiltrare.innerHTML = "Nu exista produse conform filtrării curente.";
+                // Setează textul mesajului.
                 document.querySelector("#produse .grid-produse").appendChild(newMesajFiltrare);
+                // Adaugă mesajul de filtrare în DOM.
             }
         } else if (mesajFiltrare) {
+            // Dacă există produse vizibile și mesajul de filtrare există:
             mesajFiltrare.remove();
+            // Elimină mesajul de filtrare din DOM.
         }
 
         updateProductCount();
+        // Actualizează numărul de produse afișate.
         marcheazaCeleMaiIeftineProduse();
+        // Marchează cele mai ieftine produse din fiecare categorie.
         saveFilters();
+        // Salvează filtrele curente.
     }
+    //bonus 3
 
+             
     function saveFilters() {
+        // Funcția salvează filtrele curente în localStorage.
         if (document.getElementById("salveaza-filtrare").checked) {
+            // Dacă checkbox-ul pentru salvarea filtrării este bifat:
             const filters = {
                 nume: document.getElementById("inp-nume").value,
                 pret: document.getElementById("inp-pret").value,
@@ -115,15 +179,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 calitate: Array.from(document.querySelectorAll('input[name="calitate"]:checked')).map(cb => cb.value),
                 salveazaFiltrare: document.getElementById("salveaza-filtrare").checked
             };
+            // Creează un obiect filters cu valorile input-urilor curente.
             localStorage.setItem("filters", JSON.stringify(filters));
+            // Salvează obiectul filters în localStorage.
         } else {
+            // Dacă checkbox-ul pentru salvarea filtrării nu este bifat:
             localStorage.removeItem("filters");
+            // Elimină filtrele din localStorage.
         }
     }
 
     function loadFilters() {
+        // Funcția încarcă filtrele salvate din localStorage.
         const savedFilters = JSON.parse(localStorage.getItem("filters"));
+        // Obține și parsează filtrele salvate din localStorage.
         if (savedFilters) {
+            // Dacă există filtre salvate:
             document.getElementById("inp-nume").value = savedFilters.nume;
             document.getElementById("inp-pret").value = savedFilters.pret;
             document.getElementById("infoRange").innerHTML = `(${savedFilters.pret})`;
@@ -135,9 +206,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById(`calitate-${value.toLowerCase()}`).checked = true;
             });
             document.getElementById("salveaza-filtrare").checked = savedFilters.salveazaFiltrare;
+            // Setează valorile input-urilor din pagina curentă cu valorile salvate.
         }
     }
 
+    //bonus 4
+    // Adaugă evenimente de filtrare pentru fiecare input relevant
     document.getElementById("inp-nume").oninput = filtreazaProduse;
     document.getElementById("inp-pret").onchange = function() {
         document.getElementById("infoRange").innerHTML = `(${this.value})`;
@@ -149,8 +223,11 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("inp-garantie").onchange = filtreazaProduse;
     document.querySelectorAll('input[name="calitate"]').forEach(cb => cb.onchange = filtreazaProduse);
 
+    // Adaugă un eveniment de schimbare pentru checkbox-ul de salvare a filtrării
     document.getElementById("salveaza-filtrare").onchange = saveFilters;
+    //bonus 4
 
+    // Adaugă un eveniment de resetare a filtrelor
     document.getElementById("resetare").onclick = function() {
         if (confirm("Sigur doriți să resetați filtrele? Această acțiune va elimina toate filtrele și va afișa toate produsele.")) {
             document.getElementById("inp-nume").value = "";

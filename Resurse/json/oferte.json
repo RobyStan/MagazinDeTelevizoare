@@ -1,23 +1,46 @@
 {
     "oferte": [
-      {
-        "categorie": "LG",
-        "data-incepere": "2024-06-20T14:00:00Z",
-        "data-finalizare": "2024-06-20T17:00:00Z",
-        "reducere": 25
-      },
-      {
-        "categorie": "Sony",
-        "data-incepere": "2024-06-20T16:00:00Z",
-        "data-finalizare": "2024-06-20T16:15:00Z",
-        "reducere": 15
-      },
-      {
-        "categorie": "Samsung",
-        "data-incepere": "2024-06-20T15:45:00Z",
-        "data-finalizare": "2024-06-20T16:00:00Z",
-        "reducere": 20
-      }
+        {
+            "categorie": "Samsung",
+            "data-incepere": "2024-06-20T20:18:16.828Z",
+            "data-finalizare": "2024-06-20T21:18:16.828Z",
+            "reducere": 35
+        },
+        {
+            "categorie": "LG",
+            "data-incepere": "2024-06-20T19:18:16.234Z",
+            "data-finalizare": "2024-06-20T20:18:16.234Z",
+            "reducere": 20
+        },
+        {
+            "categorie": "Sony",
+            "data-incepere": "2024-06-20T18:18:15.520Z",
+            "data-finalizare": "2024-06-20T19:18:15.520Z",
+            "reducere": 5
+        },
+        {
+            "categorie": "Philips",
+            "data-incepere": "2024-06-20T17:18:14.880Z",
+            "data-finalizare": "2024-06-20T18:18:14.880Z",
+            "reducere": 30
+        },
+        {
+            "categorie": "LG",
+            "data-incepere": "2024-06-20T14:00:00Z",
+            "data-finalizare": "2024-06-20T17:00:00Z",
+            "reducere": 25
+        },
+        {
+            "categorie": "Sony",
+            "data-incepere": "2024-06-20T16:00:00Z",
+            "data-finalizare": "2024-06-20T16:15:00Z",
+            "reducere": 15
+        },
+        {
+            "categorie": "Samsung",
+            "data-incepere": "2024-06-20T15:45:00Z",
+            "data-finalizare": "2024-06-20T16:00:00Z",
+            "reducere": 20
+        }
     ]
-  }
-  
+}

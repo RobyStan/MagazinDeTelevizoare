@@ -39,7 +39,7 @@ body.dark {
 /*link-top*/
 #link-top {
     position:fixed;
-    bottom:3em;
+    bottom:5em;
     opacity:0.5;
     left:0.3em;
     width:3rem;
@@ -148,6 +148,7 @@ caption {
 .container-iframe {
   display: flex;
   width: 55%;
+  
 }
 
 .container-iframe iframe {

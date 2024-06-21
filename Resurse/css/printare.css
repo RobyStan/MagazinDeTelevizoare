@@ -34,16 +34,20 @@
         display: block;
     }
 
+    img, video, iframe, figcaption {
+        display: none;
+    }
+
     html {
+        margin: 0;
+    }
+
+    @page :left {
         margin-left: 2.5cm;
         margin-right: 0.5cm;
     }
 
-    @page :left{
-        margin-left: 2.5cm;
-        margin-right: 0.5cm;
-    }
-    @page :right{
+    @page :right {
         margin-left: 0.5cm;
         margin-right: 2.5cm;
     }
@@ -67,12 +71,7 @@
         display: none;
     }
 
-    header,
-    footer {
-        page-break-before: always;
-    }
-
-    #end {
+    header, footer {
         page-break-before: always;
     }
 }

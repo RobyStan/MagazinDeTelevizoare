@@ -1,127 +1,126 @@
-$inaltime-meniu: 3rem;
+$inaltime-meniu: 3rem; 
 
 body {
-  --inaltime-meniu: #{$inaltime-meniu};
+  --inaltime-meniu: #{$inaltime-meniu}; 
 }
 
 nav {
-  $inaltime-meniu-nav: 2.5em;
-  $latime-buton: 150px;
-  --latime-buton: #{$latime-buton};
-  height: var(--inaltime-meniu);
-  background-color: var(--culoare-deschisa);
+  $inaltime-meniu-nav: 2.5em; 
+  $latime-buton: 150px; 
+  --latime-buton: #{$latime-buton}; 
+  height: var(--inaltime-meniu); 
+  background-color: var(--culoare-deschisa); 
 }
 
 #hamburger,
 #ch-menu {
-  display: none;
+  display: none; 
 }
 
 #hamburger img {
-  height: 100%;
-  width: auto;
+  height: 100%; // Setează înălțimea imaginii la 100% din elementul părinte.
+  width: auto; // Setează lățimea imaginii automat pentru a păstra raportul de aspect.
 }
 
 #acasa-mediu {
-  display: none;
+  display: none; 
 }
 
 .meniu {
-  display: flex;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  background-color: var(--culoare-deschisa);
+  display: flex; 
+  list-style-type: none; // Elimină punctele de listă din stilul implicit.
+  padding: 0; 
+  margin: 0; 
+  background-color: var(--culoare-deschisa); 
 
   ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    background-color: var(--culoare-deschisa);
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+    background-color: var(--culoare-deschisa); 
   }
 
   li {
-    border: 1px solid var(--culoare-inchisa);
-    width: var(--latime-buton);
-    height: var(--inaltime-meniu);
-    box-sizing: border-box;
+    border: 1px solid var(--culoare-inchisa); 
+    width: var(--latime-buton); 
+    height: var(--inaltime-meniu); 
+    box-sizing: border-box; 
 
     div,
     a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      line-height: var(--inaltime-meniu);
-      color: var(--culoare-text);
-      text-decoration: none;
-      box-sizing: border-box;
-      text-align: center;
-      transition: all 1s linear;
+      display: block; 
+      width: 100%; 
+      height: 100%; // Setează înălțimea la 100% din elementul părinte.
+      cursor: pointer; // Setează cursorul la pointer pentru a indica faptul că elementul este interactiv.
+      line-height: var(--inaltime-meniu); 
+      color: var(--culoare-text); 
+      text-decoration: none; // Elimină sublinierea implicită a linkurilor.
+      box-sizing: border-box; // Include padding și border în dimensiunile totale ale elementului.
+      text-align: center; 
+      transition: all 1s linear; 
 
       &:hover .sageata {
-        opacity: 1;
-        transform: translate(0);
+        opacity: 1; 
+        transform: translate(0); // Translează elementul la poziția inițială.
       }
     }
 
     div {
-      text-align: center;
+      text-align: center; // Centrează textul pe orizontală.
     }
 
     a {
       .sageata {
-        display: inline-block;
-        opacity: 0;
-        transform: translateX(-30px);
-        transition: opacity 0.2s 0.2s, transform 1s;
+        display: inline-block; 
+        opacity: 0; // Setează opacitatea la 0.
+        transition: opacity 0.2s 0.2s, transform 1s; // Setează o tranziție pentru opacitate și transformare.
       }
 
       &:hover .sageata {
-        opacity: 1;
-        transform: translate(0);
+        opacity: 1; // Setează opacitatea la 1 la hover.
+        transform: translate(0); // Translează elementul la poziția inițială.
       }
     }
 
     &:hover {
       div,
       a {
-        background-color: var(--culoare-inchisa);
-        color: var(--culoare-text-selectat);
+        background-color: var(--culoare-inchisa); // Schimbă culoarea de fundal la valoarea variabilei CSS --culoare-inchisa la hover.
+        color: var(--culoare-text-selectat); // Schimbă culoarea textului la valoarea variabilei CSS --culoare-text-selectat la hover.
       }
 
       div {
-        box-shadow: inset 0 0 20px var(--culoare-text-selectat);
+        box-shadow: inset 0 0 20px var(--culoare-text-selectat); // Adaugă o umbră interioară la div.
       }
 
       a {
         div {
-          background-color: var(--culoare-inchisa);
-          color: var(--culoare-text-selectat);
-          box-shadow: inset 0 0 20px var(--culoare-text-selectat);
+          background-color: var(--culoare-inchisa); // Schimbă culoarea de fundal a div-ului din link la hover.
+          color: var(--culoare-text-selectat); // Schimbă culoarea textului a div-ului din link la hover.
+          box-shadow: inset 0 0 20px var(--culoare-text-selectat); // Adaugă o umbră interioară la div-ul din link.
         }
       }
 
       ul {
-        display: block;
-        position: absolute;
-        z-index: 100;
-        animation: animatie_submeniu 0.75s linear 1 forwards;
-        transform-origin: top;
+        display: block; // Afișează sublista la hover.
+        position: absolute; // Setează poziția sublistei la absolută.
+        z-index: 100; // Setează nivelul z-index la 100.
+        animation: animatie_submeniu 0.75s linear 1 forwards; // Adaugă o animație la sublista.
+        transform-origin: top; // Setează originea transformării la partea de sus.
       }
     }
   }
 
   ul {
-    display: none;
-    opacity: 0;
-    transform: scaleY(0);
+    display: none; // Ascunde sublista implicit.
+    opacity: 0; 
+    transform: scaleY(0); // Scalează sublista pe axa Y la 0.
   }
 }
 
 @keyframes animatie_submeniu {
   100% {
-    opacity: 1;
-    transform: scaleY(1);
+    opacity: 1; 
+    transform: scaleY(1); 
   }
 }
