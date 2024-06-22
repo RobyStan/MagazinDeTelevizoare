@@ -1,35 +1,29 @@
 @use '../../node_modules/bootstrap/scss/bootstrap.scss' as *;
 
-// Tema cromatică personalizată
-$primary: #E87909; // Exemplu de culoare personalizată pentru tema primară
+$primary: #E87909; 
 
-// Culori de font
-$body-color: #f6be06; // Culoare de font pentru textul corpului
 
-// Dimensiuni de ecran diferite
-$screen-md: 768px; // Dimensiunea ecranului mediu
-$screen-lg: 992px; // Dimensiunea ecranului mare
+$body-color: #f6be06; 
 
-// Dimensiunea razelor de border
-$border-radius: 6px; // Dimensiunea razei borderului
+$screen-md: 768px; 
+$screen-lg: 992px;
 
-// Dimensiunea literelor pentru heading-uri
-$h1-font-size: 2.5rem; // Dimensiunea fontului pentru h1
-$h2-font-size: 2rem; // Dimensiunea fontului pentru h2
-$h3-font-size: 1.75rem; // Dimensiunea fontului pentru h3
+$border-radius: 6px; 
 
-// Familie de font implicită
-$body-font-family: 'Arial', sans-serif; // Familia de font implicită pentru textul corpului
 
-// Alte variabile personalizate
+$h1-font-size: 2.5rem; 
+$h2-font-size: 2rem; 
+$h3-font-size: 1.75rem; 
+
+
+$body-font-family: 'Arial', sans-serif; 
+
 $custom-variable: value; // Exemplu de variabilă personalizată
 
-// Suprascriem unele stiluri Bootstrap pentru a se potrivi cu tema noastră personalizată
 body {
   background-color: #ebff0a; // Culoarea de fundal pentru corpul paginii
 }
 
-// Custom CSS for the switch
 .switch {
   position: relative;
   display: inline-block;
@@ -78,11 +72,11 @@ body {
 // Stilizarea butoanelor
 .btn-custom {
   @extend .btn; // Folosim stilurile de bază ale butonului din Bootstrap
-  background-color: $primary; // Folosim culoarea personalizată pentru fundal
-  color: #fff; // Culoarea textului
+  background-color: $primary; 
+  color: var(--culoare-text-selectat); 
   border-radius: $border-radius; // Folosim dimensiunea personalizată a razei borderului
-  border: 2px solid $primary; // Grosimea borderului
-  font-size: 1rem; // Dimensiunea fontului
+  border: 2px solid $primary; 
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,16 +85,16 @@ body {
     display: inline-block;
     width: 16px;
     height: 16px;
-    margin-right: 0.5rem; // Spațiere între icon și text pe ecran mediu și mare
+    margin-right: 0.5rem; 
   }
   
   .btn-text {
-    display: inline; // Afișăm textul pe ecran mediu și mare
+    display: inline; 
   }
   
   @media (max-width: $screen-md) {
     .btn-text {
-      display: none; // Ascundem textul pe ecran mic
+      display: none; 
     }
   }
 }
@@ -141,17 +135,6 @@ body {
   }
 }
 
-// Stilizare specifică pentru ecranul mediu
-@media (min-width: $screen-md) {
-  // Stilizare specifică pentru ecranul mediu
-}
-
-// Stilizare specifică pentru ecranul mare
-@media (min-width: $screen-lg) {
-  // Stilizare specifică pentru ecranul mare
-}
-
-// Custom CSS for the switch
 .custom-switch .custom-control-label::before {
   background-color: $primary;
 }

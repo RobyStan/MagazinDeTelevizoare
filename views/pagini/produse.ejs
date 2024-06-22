@@ -24,7 +24,20 @@ let maxDiagonala = Math.max(...produse.map(p => p.diagonala));
     <div class="row mb-3">
         <div class="col-md-6 mb-3">
             <label for="inp-nume">Nume:</label>
-            <input type="text" class="form-control" id="inp-nume">
+            <textarea class="form-control" id="inp-nume" placeholder="Introduceți numele"></textarea>
+            <div class="invalid-feedback">
+                Numele este obligatoriu.
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="inp-descriere">Cuvânt cheie în descriere:</label>
+            <input type="text" class="form-control" id="inp-descriere">
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6 mb-3">
+                <input type="checkbox" id="noutati" class="form-check-input">
+                <label for="noutati" class="form-check-label">Noutăți</label>
+            </div>
         </div>
         <!--bonus1-->
         <div class="col-md-6 mb-3">
@@ -124,17 +137,6 @@ let maxDiagonala = Math.max(...produse.map(p => p.diagonala));
             <% } %>
         </div>
     </section>
-    <div class="row mb-3">
-        <div class="col-12">
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
-                <label for="floatingTextarea">Comentariu</label>
-                <div class="invalid-feedback">
-                    Vă rugăm să introduceți un comentariu valid.
-                </div>
-            </div>
-        </div>
-    </div>
 </main>
 
 <%- include("../fragmente/footer") %>

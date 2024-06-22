@@ -156,10 +156,8 @@ function generateOffer() {
     });
 }
 
-// Setarea unui interval pentru generarea unei noi oferte
-setInterval(generateOffer, 1 * 60 * 60 * 1000); // Interval de 1 oră pentru prezentare
+setInterval(generateOffer, 1 * 60 * 60 * 1000); // Interval de 1 ora
 
-// Funcție pentru curățarea ofertelor vechi
 function cleanupOldOffers() {
     fs.readFile(path.join(__dirname, 'resurse/json/oferte.json'), 'utf8', (err, data) => {
         if (err) {
@@ -186,7 +184,6 @@ function cleanupOldOffers() {
     });
 }
 
-// Setarea unui interval pentru curățarea ofertelor vechi
 setInterval(cleanupOldOffers, 24 * 60 * 60 * 1000); // Rulează la fiecare 24 de ore
 
 // Rută pentru compararea produselor
@@ -597,7 +594,7 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
     if (eveniment == "change" || eveniment == "rename") {
         let caleCompleta = path.join(obGlobal.folderScss, numeFis);
         if (fs.existsSync(caleCompleta)) {
-            compileazaScss(caleCompleta);
+            compileazaScss(caleCompleta); 
         }
     }
 })

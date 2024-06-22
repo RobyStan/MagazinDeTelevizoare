@@ -1,16 +1,12 @@
 let tema = localStorage.getItem("tema");
 
 if (tema) document.body.classList.add("dark");
-//adaugă clasa "dark" la elementul <body> pentru a activa tema întunecată.
 
 window.addEventListener("DOMContentLoaded", function () {
-    // Adaugă un eveniment care va fi apelat când tot conținutul HTML a fost complet încărcat și DOM-ul este complet construit.
 
     const switchInput = document.getElementById("schimba_tema");
-    // Obține elementul input (comutatorul de temă) cu id-ul "schimba_tema".
 
     updateThemeIcon(switchInput.checked);
-    // Actualizează pictograma temei bazată pe starea comutatorului (checked sau unchecked).
 
     switchInput.onchange = function () {
 

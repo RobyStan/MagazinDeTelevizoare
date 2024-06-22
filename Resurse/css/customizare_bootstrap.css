@@ -12010,7 +12010,7 @@ body {
 
 .btn-custom, .btn-calculate, .btn-reset, .btn-sort-desc, .btn-sort-cresc, .btn-filter {
   background-color: #E87909;
-  color: #fff;
+  color: var(--culoare-text-selectat);
   border-radius: 6px;
   border: 2px solid #E87909;
   font-size: 1rem;

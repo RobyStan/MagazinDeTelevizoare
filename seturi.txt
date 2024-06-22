@@ -1,0 +1,45 @@
+-- Crearea tabelului seturi
+CREATE TABLE seturi (
+    id SERIAL PRIMARY KEY,
+    nume_set VARCHAR(255) NOT NULL,
+    descriere_set TEXT
+);
+
+-- Crearea tabelului asociere_set
+CREATE TABLE asociere_set (
+    id SERIAL PRIMARY KEY,
+    id_set INTEGER NOT NULL,
+    id_produs INTEGER NOT NULL,
+    FOREIGN KEY (id_set) REFERENCES seturi(id),
+    FOREIGN KEY (id_produs) REFERENCES televizoare(id)
+);
+
+-- Inserarea seturilor
+INSERT INTO seturi (nume_set, descriere_set) VALUES 
+('Set Televizoare Samsung', 'Un set de televizoare Samsung de ultimă generație.'),
+('Set Televizoare Sony', 'Televizoare Sony cu diverse specificații și dimensiuni.'),
+('Set Televizoare LG', 'Televizoare LG cu funcții inteligente.'),
+('Set Televizoare Philips', 'Televizoare Philips pentru diverse nevoi.'),
+('Set Televizoare Mixte', 'Set de televizoare de la diferite branduri.');
+
+-- Inserarea asocierilor de produse în seturi
+INSERT INTO asociere_set (id_set, id_produs) VALUES 
+-- Set Televizoare Samsung
+(1, 1),
+(1, 17),
+(1, 22),
+(1, 23),
+-- Set Televizoare Sony
+(2, 15),
+(2, 25),
+-- Set Televizoare LG
+(3, 16),
+(3, 24),
+-- Set Televizoare Philips
+(4, 21),
+(4, 26),
+-- Set Televizoare Mixte
+(5, 1),
+(5, 15),
+(5, 21),
+(5, 24);
